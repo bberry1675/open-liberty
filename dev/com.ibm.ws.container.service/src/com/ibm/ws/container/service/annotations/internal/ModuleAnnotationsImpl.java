@@ -10,12 +10,8 @@
  *******************************************************************************/
 package com.ibm.ws.container.service.annotations.internal;
 
-import java.util.Set;
-
 import com.ibm.websphere.ras.Tr;
-import com.ibm.websphere.ras.TraceComponent;
 import com.ibm.ws.container.service.annotations.ModuleAnnotations;
-import com.ibm.ws.container.service.annotations.SpecificAnnotations;
 import com.ibm.ws.container.service.app.deploy.ApplicationClassesContainerInfo;
 import com.ibm.ws.container.service.app.deploy.ApplicationInfo;
 import com.ibm.ws.container.service.app.deploy.ContainerInfo;
@@ -24,19 +20,7 @@ import com.ibm.ws.container.service.app.deploy.ModuleInfo;
 import com.ibm.wsspi.adaptable.module.Container;
 import com.ibm.wsspi.adaptable.module.NonPersistentCache;
 import com.ibm.wsspi.adaptable.module.UnableToAdaptException;
-import com.ibm.wsspi.anno.classsource.ClassSource;
-import com.ibm.wsspi.anno.classsource.ClassSource_Aggregate;
-import com.ibm.wsspi.anno.classsource.ClassSource_Exception;
 import com.ibm.wsspi.anno.classsource.ClassSource_Factory;
-import com.ibm.wsspi.anno.classsource.ClassSource_Options;
-import com.ibm.wsspi.anno.info.ClassInfo;
-import com.ibm.wsspi.anno.info.InfoStore;
-import com.ibm.wsspi.anno.info.InfoStoreException;
-import com.ibm.wsspi.anno.info.InfoStoreFactory;
-import com.ibm.wsspi.anno.service.AnnotationService_Service;
-import com.ibm.wsspi.anno.targets.AnnotationTargets_Exception;
-import com.ibm.wsspi.anno.targets.AnnotationTargets_Factory;
-import com.ibm.wsspi.anno.targets.AnnotationTargets_Targets;
 import com.ibm.wsspi.artifact.ArtifactContainer;
 import com.ibm.wsspi.artifact.overlay.OverlayContainer;
 
@@ -85,506 +69,274 @@ import com.ibm.wsspi.artifact.overlay.OverlayContainer;
  * Informational messages are generated for the initiation of a scan, and for the
  * completion of a scan.
  */
-public class ModuleAnnotationsImpl implements ModuleAnnotations {
 
-    private static final TraceComponent tc = Tr.register(ModuleAnnotationsImpl.class);
+// ClassesContainerInfo used by:
+//
+// com.ibm.ws.app.manager.ejb/src/com/ibm/ws/app/manager/ejb/internal/EJBDeployedAppInfo.java
+// com.ibm.ws.app.manager.module/src/com/ibm/ws/app/manager/module/internal/DeployedAppInfoBase.java
+// com.ibm.ws.app.manager.module/src/com/ibm/ws/app/manager/module/internal/SimpleDeployedAppInfoBase.java
+// com.ibm.ws.app.manager.rar/src/com/ibm/ws/app/manager/rar/internal/RARDeployedAppInfo.java
+// com.ibm.ws.app.manager.springboot/src/com/ibm/ws/app/manager/springboot/internal/SpringBootApplicationImpl.java
+// com.ibm.ws.app.manager.springboot/src/com/ibm/ws/app/manager/springboot/support/SpringBootApplication.java
+// com.ibm.ws.app.manager.war/src/com/ibm/ws/app/manager/ear/internal/EARDeployedAppInfo.java
+// com.ibm.ws.app.manager.war/src/com/ibm/ws/app/manager/war/internal/WARDeployedAppInfo.java
+// com.ibm.ws.cdi.internal/src/com/ibm/ws/cdi/internal/archive/liberty/ApplicationImpl.java
+// com.ibm.ws.cdi.internal/src/com/ibm/ws/cdi/internal/archive/liberty/CDIArchiveImpl.java
+// com.ibm.ws.classloading/src/com/ibm/ws/classloading/ClassLoaderConfigHelper.java
+// com.ibm.ws.container.service/src/com/ibm/ws/container/service/annotations/internal/ModuleAnnotationsImpl.java
+// com.ibm.ws.container.service/src/com/ibm/ws/container/service/app/deploy/ApplicationClassesContainerInfo.java
+// com.ibm.ws.container.service/src/com/ibm/ws/container/service/app/deploy/extended/ApplicationInfoFactory.java
+// com.ibm.ws.container.service/src/com/ibm/ws/container/service/app/deploy/extended/LibraryClassesContainerInfo.java
+// com.ibm.ws.container.service/src/com/ibm/ws/container/service/app/deploy/internal/ApplicationInfoFactoryImpl.java
+// com.ibm.ws.container.service/src/com/ibm/ws/container/service/app/deploy/ModuleClassesContainerInfo.java
+// com.ibm.ws.ejbcontainer.remote/src/com/ibm/ws/ejbcontainer/remote/internal/EJBStubClassGeneratorImpl.java
+// com.ibm.ws.jaxrs.2.0.server/src/com/ibm/ws/jaxrs20/server/component/JaxRsWebContainerManagerImpl.java
+// com.ibm.ws.jaxws.webcontainer/src/com/ibm/ws/jaxws/webcontainer/JaxWsWebContainerManagerImpl.java
+// com.ibm.ws.jpa.container/src/com/ibm/ws/jpa/container/osgi/internal/JPAComponentImpl.java
+// com.ibm.ws.jsp/src/com/ibm/ws/jsp/taglib/SharedLibClassesContainerInfo.java
+// com.ibm.ws.jsp/src/com/ibm/ws/jsp/taglib/SharedLibClassesContainerInfoAdapter.java
+// com.ibm.ws.jsp/src/com/ibm/ws/jsp/taglib/TagLibraryCache.java
+// com.ibm.ws.springboot.support.web.server/src/com/ibm/ws/springboot/support/web/server/internal/WebInstance.java
 
-    // Reference to the underlying annotation service.  That links to the
-    // more detailed service entities.
-    private final AnnotationService_Service annotationService;
+public class ModuleAnnotationsImpl extends AnnotationsImpl implements ModuleAnnotations {
 
-    // Debugging values ... these three are related to the container which is being adapted.
-    private final Container rootContainer;
-    private final OverlayContainer rootOverlayContainer;
-    private final ArtifactContainer rootArtifactContainer;
+    public ModuleAnnotationsImpl(
+        AnnotationsAdapterImpl annotationsAdapter,
+        Container rootContainer, OverlayContainer rootOverlayContainer,
+        ArtifactContainer rootArtifactContainer, Container rootAdaptableContainer,
+        ModuleInfo moduleInfo) {
 
-    // Web app specific values ... these are retrieved from the overlay container.
+        super( annotationsAdapter,
+               rootContainer, rootOverlayContainer,
+               rootArtifactContainer, rootAdaptableContainer,
+               moduleInfo.getApplicationInfo().getName(),
+               AnnotationsAdapterImpl.getPath(moduleInfo.getContainer()),
+               ClassSource_Factory.JAVAEE_CATEGORY_NAME );
+
+        this.moduleInfo = moduleInfo;
+        this.classLoader = moduleInfo.getClassLoader();
+
+        this.appInfo = moduleInfo.getApplicationInfo();
+    }
+
+    //
+
     private final ModuleInfo moduleInfo;
 
-    // Note that this should be the module context class loader, not the entire class
-    // loader of the module.
-    private ClassLoader moduleClassLoader = null;
-
-    // TODO: Are the module manifest entries and application library entries needed?
-
-    // TODO: Is the class loader, as currently retrieved, the subset class loader,
-    //       or is it for the entire module?
-
-    // Service results ...
-    private ClassSource_Aggregate moduleClassSource = null;
-    private AnnotationTargets_Targets moduleAnnotationTargets = null;
-    private InfoStore moduleInfoStore = null;
-
-    //
-
-    public ModuleAnnotationsImpl(Container root,
-                                 OverlayContainer rootOverlay,
-                                 ArtifactContainer artifactContainer,
-                                 Container containerToAdapt,
-                                 AnnotationService_Service annotationService) {
-
-        this.annotationService = annotationService;
-
-        this.rootContainer = root;
-        this.rootOverlayContainer = rootOverlay;
-        this.rootArtifactContainer = artifactContainer;
-
-        this.moduleInfo = this.retrieveFromOverlay(ModuleInfo.class);
-        this.moduleClassLoader = this.moduleInfo.getClassLoader();
-    }
-
-    // Service bridge access ...
-
-    private AnnotationService_Service getAnnotationService() {
-        return this.annotationService;
-    }
-
-    private ClassSource_Factory getClassSourceFactory() {
-        return getAnnotationService().getClassSourceFactory();
-    }
-
-    private AnnotationTargets_Factory getAnnotationTargetsFactory() {
-        return getAnnotationService().getAnnotationTargetsFactory();
-    }
-
-    private InfoStoreFactory getInfoStoreFactory() {
-        return getAnnotationService().getInfoStoreFactory();
-    }
-
-    // Initial parameters ...
-
-    protected Container getRootContainer() {
-        return this.rootContainer;
-    }
-
-    private OverlayContainer getRootOverlayContainer() {
-        return this.rootOverlayContainer;
-    }
-
-    @SuppressWarnings("unchecked")
-    private <T> T retrieveFromOverlay(Class<T> targetClass) {
-        Object retrievedInfo = getRootOverlayContainer().getFromNonPersistentCache(getRootArtifactPath(), targetClass);
-        return (T) retrievedInfo;
-    }
-
-    private <T> void addToOverlay(Class<T> targetClass, T targetObject) {
-        getRootOverlayContainer().addToNonPersistentCache(getRootArtifactPath(),
-                                                          targetClass,
-                                                          targetObject);
-    }
-
-    private ArtifactContainer getRootArtifactContainer() {
-        return this.rootArtifactContainer;
-    }
-
-    private String getRootArtifactPath() {
-        return getRootArtifactContainer().getPath();
-    }
-
-    private ClassLoader getModuleClassLoader() {
-        return this.moduleClassLoader;
-    }
-
-    // Intermediate parameters ...
-
-    // TODO: Add application library jars.
-    // TODO: Add module manifest jars.
-
-    //
-
     @Override
-    public ClassInfo getClassInfo(String className) throws UnableToAdaptException {
-        return getInfoStore().getDelayableClassInfo(className);
+    public ModuleInfo getModuleInfo() {
+        return moduleInfo;
     }
 
     //
 
-    private String containerName = null;
-
+    @Deprecated
     @Override
     public void addAppClassLoader(ClassLoader appClassLoader) {
-        ClassSource_Factory classSourceFactory = annotationService.getClassSourceFactory();
-        try {
-            ApplicationInfo applicationInfo = moduleInfo.getApplicationInfo();
-            ClassSource_Options options = getClassSourceFactory().createOptions();
-            options.setUseJandex(applicationInfo.getUseJandex());
+        setClassLoader(appClassLoader);
+    }
 
-            ClassSource clClassSource = classSourceFactory.createClassLoaderClassSource(getClassSource().getInternMap(),
-                                                                                        containerName + " parent classloader",
-                                                                                        options,
-                                                                                        appClassLoader);
-            getClassSource().addClassSource(clClassSource, ClassSource_Aggregate.ScanPolicy.EXTERNAL);
-        } catch (ClassSource_Exception e) {
-            e.getCause();
-            //Tr.error(_tc, "error.module.create", appInfo.getName(), moduleInfo.getURI(), "EJB", e);
-        } catch (UnableToAdaptException e) {
-            e.getCause();
-            //Tr.error(_tc, "error.module.create", appInfo.getName(), moduleInfo.getURI(), "EJB", e);
-        }
+    //
+
+    private final ApplicationInfo appInfo;
+
+    @Override
+    public ApplicationInfo getAppInfo() {
+        return appInfo;
     }
 
     @Override
-    public ClassSource_Aggregate getClassSource() throws UnableToAdaptException {
-        if (this.moduleClassSource != null) {
-            return this.moduleClassSource;
-        }
+    public Container getAppContainer() {
+        return getAppInfo().getContainer();
+    }
 
-        this.moduleClassSource = retrieveFromOverlay(ClassSource_Aggregate.class);
-        if (this.moduleClassSource != null) {
-            return this.moduleClassSource;
-        }
-
-        containerName = rootContainer.getName();
-
-        ApplicationInfo applicationInfo = moduleInfo.getApplicationInfo();
-        ClassSource_Options options = getClassSourceFactory().createOptions();
-        options.setUseJandex(applicationInfo.getUseJandex());
-
-        ClassSource_Aggregate useClassSource;
-
-        try {
-            useClassSource = getClassSourceFactory().createAggregateClassSource(containerName, options);
-        } catch (ClassSource_Exception e) {
-            String msg = Tr.formatMessage(tc, "failed.to.create.module.class.source.CWWKM0454E", "Failed to create module class source", containerName, e);
-            throw new UnableToAdaptException(msg, e);
-        }
-
-        try {
-            ModuleClassesContainerInfo moduleClassesContainerInfo = getModuleClassesContainerInfo();
-
-            if (moduleClassesContainerInfo == null) {
-                //Naming convention of "<containerName> + container" is proper, provided it is used consistently.
-                String containerClassSourceName = containerName + " container";
-
-                //Add the container from the module
-                ClassSource containerClassSource = getClassSourceFactory().createContainerClassSource(useClassSource.getInternMap(),
-                                                                                                      containerClassSourceName,
-                                                                                                      options,
-                                                                                                      this.moduleInfo.getContainer());
-                useClassSource.addClassSource(containerClassSource, ClassSource_Aggregate.ScanPolicy.SEED);
-            } else {
-                for (ContainerInfo containerInfo : moduleClassesContainerInfo.getClassesContainerInfo()) {
-                    if (containerInfo.getType() != ContainerInfo.Type.MANIFEST_CLASSPATH) {
-                        String name = containerInfo.getName() + " container";
-                        ClassSource containerSource = getClassSourceFactory().createContainerClassSource(useClassSource.getInternMap(),
-                                                                                                         name,
-                                                                                                         options,
-                                                                                                         containerInfo.getContainer());
-                        useClassSource.addClassSource(containerSource, ClassSource_Aggregate.ScanPolicy.SEED);
-                    }
-                }
-            }
-
-            //Allow this to be null and added later.
-            if (getModuleClassLoader() != null) {
-                ClassSource clSource = getClassSourceFactory().createClassLoaderClassSource(useClassSource.getInternMap(),
-                                                                                            containerName + " parent classloader",
-                                                                                            options,
-                                                                                            getModuleClassLoader());
-                useClassSource.addClassSource(clSource, ClassSource_Aggregate.ScanPolicy.EXTERNAL);
-            }
-        } catch (ClassSource_Exception e) {
-            String msg = Tr.formatMessage(tc, "failed.to.create.module.class.source.CWWKM0455E", "Failed to create module class source", containerName, e);
-            throw new UnableToAdaptException(msg, e);
-        }
-
-        this.moduleClassSource = useClassSource;
-        this.addToOverlay(ClassSource_Aggregate.class, this.moduleClassSource);
-
-        return this.moduleClassSource;
+    /**
+     * Override: Retrieve the 'useJandex' setting from
+     * the application information.
+     * 
+     * @return True or false telling if Jandex indexes are to be read.
+     */
+    @Override
+    public boolean getUseJandex() {
+        return getAppInfo().getUseJandex();
     }
 
     private ModuleClassesContainerInfo getModuleClassesContainerInfo() {
-        Container container = moduleInfo.getApplicationInfo().getContainer();
+        Container container = getContainer();
+
         NonPersistentCache cache;
         try {
-            cache = container.adapt(NonPersistentCache.class);
-        } catch (UnableToAdaptException e) {
-            throw new RuntimeException(e);
+            cache = getAppContainer().adapt(NonPersistentCache.class);
+            // 'adapt' throws UnableToAdaptException
+        } catch ( UnableToAdaptException e ) {
+            return null; // FFDC
         }
+        ApplicationClassesContainerInfo appClassesInfo = (ApplicationClassesContainerInfo)
+            cache.getFromCache(ApplicationClassesContainerInfo.class);
 
-        // There is no direct accessor, so loop over all modules in the
-        // application looking for a ModuleClassesContainerInfo that has a
-        // Container that matches the module container.
-        ApplicationClassesContainerInfo applicationClassesContainerInfo = (ApplicationClassesContainerInfo) cache.getFromCache(ApplicationClassesContainerInfo.class);
-        for (ModuleClassesContainerInfo moduleClassesContainerInfo : applicationClassesContainerInfo.getModuleClassesContainerInfo()) {
-            for (ContainerInfo containerInfo : moduleClassesContainerInfo.getClassesContainerInfo()) {
-                if (containerInfo.getType() != ContainerInfo.Type.MANIFEST_CLASSPATH && containerInfo.getContainer().equals(rootContainer)) {
-                    return moduleClassesContainerInfo;
+        // AppClassesInfo -> { ModuleClassesInfo -> { ContainerInfo -> Container } }
+        // Find the module classes information which has a container which is the
+        // same as the module container.
+
+        for ( ModuleClassesContainerInfo moduleClassesInfo : appClassesInfo.getModuleClassesContainerInfo() ) {
+            for ( ContainerInfo containerInfo : moduleClassesInfo.getClassesContainerInfo() ) {
+                if ( containerInfo.getType() == ContainerInfo.Type.MANIFEST_CLASSPATH ) {
+                    continue;
                 }
+                if ( !containerInfo.getContainer().equals(container) ) {
+                    continue;
+                }
+                return moduleClassesInfo;
             }
         }
 
-        // This should never happen.
-        return null;
-    }
-
-    @Override
-    public AnnotationTargets_Targets getAnnotationTargets() throws UnableToAdaptException {
-        if (this.moduleAnnotationTargets != null) {
-            return this.moduleAnnotationTargets;
-        }
-
-        this.moduleAnnotationTargets = retrieveFromOverlay(AnnotationTargets_Targets.class);
-        if (this.moduleAnnotationTargets != null) {
-            return this.moduleAnnotationTargets;
-        }
-
-        long startTime = reportScanStart();
-
-        ClassSource_Aggregate useClassSource = getClassSource();
-
-        AnnotationTargets_Factory useTargetsFactory = getAnnotationTargetsFactory();
-
-        AnnotationTargets_Targets useTargets;
-        try {
-            useTargets = useTargetsFactory.createTargets();
-        } catch (AnnotationTargets_Exception e) {
-            String msg = Tr.formatMessage(tc, "failed.to.obtain.module.annotation.targets.CWWKM0456E", "Failed to obtain module annotation targets", e);
-            throw new UnableToAdaptException(msg, e);
-        }
-
-        // Hook point for serialization: The scanner uses the class source as input, and transfers
-        // class and annotations data to the annotation targets data set.
-        //
-        // An alternative would use the targets serialization, and instead read the targets data from
-        // an input stream.
-
-        try {
-            useTargets.scan(useClassSource);
-        } catch (AnnotationTargets_Exception e) {
-            String msg = Tr.formatMessage(tc, "failed.to.obtain.module.annotation.targets.CWWKM0457E", "Failed to obtain module annotation targets", e);
-            throw new UnableToAdaptException(msg, e);
-        }
-
-        reportScanEnd(startTime, useTargets);
-
-        this.moduleAnnotationTargets = useTargets;
-        this.addToOverlay(AnnotationTargets_Targets.class, this.moduleAnnotationTargets);
-
-        return this.moduleAnnotationTargets;
-    }
-
-    @Override
-    public InfoStore getInfoStore() throws UnableToAdaptException {
-        if (this.moduleInfoStore != null) {
-            return this.moduleInfoStore;
-        }
-
-        this.moduleInfoStore = retrieveFromOverlay(InfoStore.class);
-        if (this.moduleInfoStore != null) {
-            return this.moduleInfoStore;
-        }
-
-        ClassSource_Aggregate useClassSource = getClassSource();
-
-        try {
-            this.moduleInfoStore = getInfoStoreFactory().createInfoStore(useClassSource);
-        } catch (InfoStoreException e) {
-            String msg = Tr.formatMessage(tc, "failed.to.obtain.module.info.store.CWWKM0458E", "Failed to obtain module info store", e);
-            throw new UnableToAdaptException(msg, e);
-        }
-
-        this.addToOverlay(InfoStore.class, this.moduleInfoStore);
-
-        return this.moduleInfoStore;
-    }
-
-    private static class SpecificAnnotationsImpl implements SpecificAnnotations {
-        private final AnnotationTargets_Targets specificTargets;
-
-        SpecificAnnotationsImpl(AnnotationTargets_Targets specificTargets) {
-            this.specificTargets = specificTargets;
-        }
-
-        @Override
-        public Set<String> selectAnnotatedClasses(Class<?> annotationClass) throws UnableToAdaptException {
-            String annotationClassName = annotationClass.getName();
-            Set<String> selectedClassNames = this.specificTargets.getAnnotatedClasses(annotationClassName, AnnotationTargets_Targets.POLICY_SEED);
-            return selectedClassNames;
-        }
-    }
-
-    @Override
-    public SpecificAnnotations getSpecificAnnotations(Set<String> specificClassNames) throws UnableToAdaptException {
-        long startTime = reportScanStart();
-
-        ClassSource_Aggregate useClassSource = getClassSource();
-
-        AnnotationTargets_Factory useTargetsFactory = getAnnotationTargetsFactory();
-
-        AnnotationTargets_Targets specificTargets;
-        try {
-            specificTargets = useTargetsFactory.createTargets();
-        } catch (AnnotationTargets_Exception e) {
-            String msg = Tr.formatMessage(tc, "failed.to.obtain.module.annotation.targets.CWWKM0459E", "Failed to obtain module annotation targets", e);
-            throw new UnableToAdaptException(msg, e);
-        }
-
-        // Hook point for serialization: The scanner uses the class source as input, and transfers
-        // class and annotations data to the annotation targets data set.
-        //
-        // An alternative would use the targets serialization, and instead read the targets data from
-        // an input stream.
-
-        try {
-            specificTargets.scan(useClassSource, specificClassNames);
-        } catch (AnnotationTargets_Exception e) {
-            String msg = Tr.formatMessage(tc, "failed.to.obtain.module.annotation.targets.CWWKM0460E", "Failed to obtain module annotation targets", e);
-            throw new UnableToAdaptException(msg, e);
-        }
-
-        reportScanEnd(startTime, specificTargets);
-
-        return new SpecificAnnotationsImpl(specificTargets);
+        return null; // Unexpected
     }
 
     //
 
-    // TODO: Re-enable on a NLS pass.
+    protected String getContainerPath(Container container) {
+        String containerPath;
+        String pathCase;
 
-    // Not able to get these to resolve:
-    //
-    // [INFO    ] Message not found in resource bundle (key=ATO_SCAN_STARTED, bundle=com.ibm.ws.anno.resources.internal.AnnoMessages, tc for com.ibm.ws.anno.adapter.AnnotationServicesImpl)
-    //
-    // For now, changed back to debug type messages.
-
-    private long reportScanStart() {
-        long startTime = getTimeInMillis();
-
-        //        String useApplicationName = getApplicationName();
-        //        String useModuleName = getModuleName();
-
-        //        Tr.info(tc, "ATO_SCAN_STARTED", new Object[] { useApplicationName, useModuleName });
-
-        return startTime;
-    }
-
-    private void reportScanEnd(long startTime, AnnotationTargets_Targets targetsTable) {
-        //        long endTime = getTimeInMillis();
-        //        long elapsedTime = endTime - startTime;
-        //
-        //        // Report header ...
-        //
-        //        String useApplicationName = getApplicationName();
-        //        String useModuleName = getModuleName();
-        //
-        //        Tr.info(tc, "ATO_SCAN_COMPLETED",  new Object[] { useApplicationName, useModuleName, Long.valueOf(elapsedTime) });
-        //
-        //        // Base counts ...
-        //
-        //        int numScannedPackages = targetsTable.getScannedPackageNames().size();
-        //        int numScannedClasses = targetsTable.getScannedClassNames().size();
-        //
-        //        Tr.info(tc,
-        //                "ATO_SCAN_CLASS_COUNTS",
-        //                new Object[] { useApplicationName, useModuleName,
-        //                               Integer.valueOf(numScannedPackages),
-        //                               Integer.valueOf(numScannedClasses) });
-        //
-        //        // Annotation counts ...
-        //
-        //        Util_BidirectionalMap packageAnnotationTable = targetsTable.getPackageAnnotationData();
-        //        int numAnnotatedPackages = packageAnnotationTable.getHolderSet().size();
-        //        int numPackageAnnotationTypes = packageAnnotationTable.getHeldSet().size();
-        //
-        //        Util_BidirectionalMap classAnnotationTable = targetsTable.getClassAnnotationData();
-        //        int numAnnotatedClasses = classAnnotationTable.getHolderSet().size();
-        //        int numClassAnnotationTypes = classAnnotationTable.getHeldSet().size();
-        //
-        //        Util_BidirectionalMap classFieldAnnotationTable = targetsTable.getFieldAnnotationData();
-        //        int numFieldAnnotatedClasses = classFieldAnnotationTable.getHolderSet().size();
-        //        int numFieldAnnotationTypes = classFieldAnnotationTable.getHeldSet().size();
-        //
-        //        Util_BidirectionalMap classMethodAnnotationTable = targetsTable.getMethodAnnotationData();
-        //        int numMethodAnnotatedClasses = classMethodAnnotationTable.getHolderSet().size();
-        //        int numMethodAnnotationTypes = classMethodAnnotationTable.getHeldSet().size();
-        //
-        //        Tr.info(tc,
-        //                "ATO_SCAN_ANNOTATION_COUNTS",
-        //                new Object[] { useApplicationName, useModuleName,
-        //                               Integer.valueOf(numAnnotatedPackages),
-        //                               Integer.valueOf(numAnnotatedClasses) });
-        //
-        //        if ( tc.isDebugEnabled() ) {
-        //            Tr.debug(tc,
-        //                     "Scan data [ {0} ] [ {1} ]: Number of package annotation types [ {2} ]",
-        //                     new Object[] { useApplicationName, useModuleName, Integer.valueOf(numPackageAnnotationTypes) });
-        //            Tr.debug(tc,
-        //                     "Scan data [ {0} ] [ {1} ]: Number of class annotation types [ {2} ]",
-        //                     new Object[] { useApplicationName, useModuleName, Integer.valueOf(numClassAnnotationTypes) });
-        //            Tr.debug(tc,
-        //                     "Scan data [ {0} ] [ {1} ]: Number of classes with field annotations [ {2} ]",
-        //                     new Object[] { useApplicationName, useModuleName, Integer.valueOf(numFieldAnnotatedClasses) });
-        //            Tr.debug(tc,
-        //                     "Scan data [ {0} ] [ {1} ]: Number of unique field annotation types [ {2} ]",
-        //                     new Object[] { useApplicationName, useModuleName, Integer.valueOf(numFieldAnnotationTypes) });
-        //            Tr.debug(tc,
-        //                     "Scan data [ {0} ] [ {1} ]: Number of classes with method annotations [ {2} ]",
-        //                     new Object[] { useApplicationName, useModuleName, Integer.valueOf(numMethodAnnotatedClasses) });
-        //            Tr.debug(tc,
-        //                     "Scan data [ {0} ] [ {1} ]: Number of unique method annotation types [ {2} ]",
-        //                     new Object[] { useApplicationName, useModuleName, Integer.valueOf(numMethodAnnotationTypes) });
-        //
-        //            // Name table sizes ...
-        //
-        //            int numUniqueClassNames = targetsTable.getClassInternMap().getSize();
-        //            int totalClassNameSize = targetsTable.getClassInternMap().getTotalLength();
-        //
-        //            int numUniqueFieldNames = targetsTable.getFieldInternMap().getSize();
-        //            int totalFieldNameSize = targetsTable.getFieldInternMap().getTotalLength();
-        //
-        //            int numUniqueMethodNames = targetsTable.getMethodInternMap().getSize();
-        //            int totalMethodNameSize = targetsTable.getMethodInternMap().getTotalLength();
-        //
-        //            Tr.debug(tc,
-        //                     "Scan data [ {0} ] [ {1} ]: Number package and class names [ {2} ]",
-        //                     new Object[] { useApplicationName, useModuleName, Integer.valueOf(numUniqueClassNames) });
-        //            Tr.debug(tc,
-        //                     "Scan data [ {0} ] [ {1} ]: Total length of package and class names [ {2} ]",
-        //                     new Object[] { useApplicationName, useModuleName, Integer.valueOf(totalClassNameSize) });
-        //
-        //            Tr.debug(tc,
-        //                     "Scan data [ {0} ] [ {1} ]: Number of field names [ {2} ]",
-        //                     new Object[] { useApplicationName, useModuleName, Integer.valueOf(numUniqueFieldNames) });
-        //            Tr.debug(tc,
-        //                     "Scan data [ {0} ] [ {1} ]: Total length of field names [ {2} ]",
-        //                     new Object[] { useApplicationName, useModuleName, Integer.valueOf(totalFieldNameSize) });
-        //
-        //            Tr.debug(tc,
-        //                     "Scan data [ {0} ] [ {1} ]: Number of method names [ {2} ]",
-        //                     new Object[] { useApplicationName, useModuleName, Integer.valueOf(numUniqueMethodNames) });
-        //            Tr.debug(tc,
-        //                     "Scan data [ {0} ] [ {1} ]: Total length of method names [ {2} ]",
-        //                     new Object[] { useApplicationName, useModuleName, Integer.valueOf(totalMethodNameSize) });
-        //        }
-    }
-
-    private long getTimeInMillis() {
-        return System.currentTimeMillis();
-    }
-
-    //
-
-    /** {@inheritDoc} */
-    @Override
-    public void openInfoStore() throws UnableToAdaptException {
         try {
-            getInfoStore().open();
-        } catch (InfoStoreException e) {
-            String msg = Tr.formatMessage(tc, "failed.to.open.web.module.info.store.CWWKM0461E", "Failed to open web module info store", e);
-            throw new UnableToAdaptException(msg, e);
+            containerPath = getPath(container); // throws UnableToAdaptException
+        } catch ( UnableToAdaptException e ) {
+            return null; // FFDC
         }
+        if ( containerPath.isEmpty() ) { // Root-of-roots
+            containerPath = getModName(); // See the comment, above.
+            pathCase = "root-of-roots (module name)";
+        } else {
+        	pathCase = "non-root-of-roots (full path)";
+        }
+
+        Tr.info(tc, "Container [ " + container + " ] Path [ " + containerPath + " ]: " + pathCase);
+        return containerPath;
     }
 
-    /** {@inheritDoc} */
     @Override
-    public void closeInfoStore() throws UnableToAdaptException {
-        try {
-            getInfoStore().close();
-        } catch (InfoStoreException e) {
-            String msg = Tr.formatMessage(tc, "failed.to.close.web.module.info.store.CWWKM0462E", "Failed to close web module info store", e);
-            throw new UnableToAdaptException(msg, e);
+    protected void addInternalToClassSource() {
+        if ( rootClassSource == null ) {
+            return; // Nothing yet to do.
+        }
+
+        ClassSource_Factory classSourceFactory = getClassSourceFactory();
+        if ( classSourceFactory == null ) {
+            return;
+        }
+
+        Container moduleContainer = getContainer();
+
+        Tr.info(tc, "Module [ " + getAppName() + ":" + getModName() + " ][ " + moduleContainer + " ]:" +
+                    " Building internal class sources");
+
+        ModuleClassesContainerInfo moduleClassesContainerInfo = getModuleClassesContainerInfo();
+
+        if ( moduleClassesContainerInfo == null ) {
+            Tr.info(tc, "No classes container info: Using the module container.");
+
+            // When there is no module classes container information, use the module container
+            // itself as the classes container.
+            //
+            // Use the full path of the module container as the container name, except,
+            // when the module container is a root of roots, use the module name as the
+            // container name, since the the full path of the module is empty.
+
+            String containerPath = getContainerPath(moduleContainer);
+            if ( containerPath == null ) {
+            	return; // FFDC in 'getContainerPath'
+            }
+            if ( !addContainerClassSource(containerPath, moduleContainer) ) {
+                return; // FFDC in 'addContainerClassSource'
+            }
+
+        } else {
+        	// These are the possible values of ContainerInfo.Type:
+        	//
+            //   MANIFEST_CLASSPATH: Should not be present
+            //   EAR_LIB: Should not be present
+            //   SHARED_LIB: Should not be present
+            //   WEB_MODULE: Should not be present; should be WEB_INF_CLASSES or WEB_INF_LIB
+
+            //   WEB_INF_CLASSES: Must be prefixed to enable finding the JANDEX index
+            //   WEB_INF_LIB: Normal; should be a root container
+
+            //   EJB_MODULE: Normal; should be a root container
+            //   CLIENT_MODULE: Normal; should be a root container
+            //   RAR_MODULE: Normal; should be a root container
+            //   JAR_MODULE: ?? Maybe, a JAR in a RAR module
+
+            for ( ContainerInfo nextInfo : moduleClassesContainerInfo.getClassesContainerInfo() ) {
+                Container nextContainer = nextInfo.getContainer();
+                ContainerInfo.Type nextType = nextInfo.getType();
+
+                if ( (nextType == ContainerInfo.Type.MANIFEST_CLASSPATH) ||
+                     (nextType == ContainerInfo.Type.EAR_LIB) ||
+                     (nextType == ContainerInfo.Type.SHARED_LIB) ) {
+
+                    // While manifest class path entries, EAR libraries, and shared libraries
+                    // can be on a module's class path, none of these is ever scanned directly,
+                    // and should not be put into the class source containers.
+                    //
+                    // These will be handled as a part of the module class loader.
+
+                    Tr.warning(tc, "Ignoring container [ " + nextContainer + " ] [ " + nextType + " ]");
+                    continue;
+
+                } else if ( nextType == ContainerInfo.Type.WEB_MODULE ) {
+                    // A web module should never be specified itself as a classes
+                    // container.
+
+                    Tr.warning(tc, "Ignoring container [ " + nextContainer + " ] [ " + nextType + " ]: " +
+                                   "Web modules should use WEB_INF_CLASSES");
+                    continue;
+                }
+
+                String nextPrefix;
+
+                if ( nextType == ContainerInfo.Type.WEB_INF_CLASSES ) {
+                    // Handle WEB-INF/classes by providing the module container
+                    // and a prefix for locating the WEB-INF/classes folder.  The
+                    // module container is provided to give the annotations visibility
+                    // to META-INF, which is where jandex indexes are stored.
+
+                    nextContainer  = nextContainer.getEnclosingContainer().getEnclosingContainer();
+                    nextPrefix = "WEB-INF/classes";
+
+                    Tr.info(tc, "Handling type [ " + nextType + " ] with prefix [ " + nextPrefix + " ]");
+
+                } else if ( (nextType == ContainerInfo.Type.WEB_INF_LIB) ||
+                            (nextType == ContainerInfo.Type.EJB_MODULE) ||
+                            (nextType == ContainerInfo.Type.CLIENT_MODULE) ||
+                            (nextType == ContainerInfo.Type.RAR_MODULE) ||
+                            (nextType == ContainerInfo.Type.JAR_MODULE) ) {
+
+                    // These are the most usual cases.
+
+                    nextPrefix = ClassSource_Factory.UNUSED_ENTRY_PREFIX;
+
+                    Tr.info(tc, "Handling type [ " + nextType + " ]");
+
+                } else {
+                    Tr.warning(tc, "Ignoring container [ " + nextContainer + " ] [ " + nextType + " ]: " +
+                                   "unknown type");
+                    return;
+                }
+
+                // A root-of-roots classes container should only be possible for
+                // particular container types.  Testing for all types should not
+                // be a problem.
+
+                String nextPath = getContainerPath(moduleContainer);
+                if ( nextPath == null ) {
+                	return; // FFDC in 'getContainerPath'
+                }
+
+                if ( !addContainerClassSource(nextPath, nextContainer, nextPrefix) ) {
+                    return; // FFDC in 'addContainerClassSource'
+                }
+            }
         }
     }
 }
