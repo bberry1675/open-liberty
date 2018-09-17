@@ -40,7 +40,7 @@ public class ServerRestartNewVersion extends LoggingTest {
     protected static final Map<String, String> testUrlMap = new HashMap<String, String>();
 
     @ClassRule
-    public static SharedServer SHARED_SERVER = new SharedServer("jandexAppDefaultAppMgrDefault_server");
+    public static SharedServer SHARED_SERVER = new SharedServer("RestartableServer");
 
     /*
      * (non-Javadoc)
