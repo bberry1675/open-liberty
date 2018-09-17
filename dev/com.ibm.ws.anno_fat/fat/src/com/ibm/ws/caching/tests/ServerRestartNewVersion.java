@@ -104,12 +104,19 @@ public class ServerRestartNewVersion extends LoggingTest {
         return s;
     }
 
+    public void testServerRestarts() throws Exception {
+        LibertyServer server = SHARED_SERVER.getLibertyServer();
+        server.restartServer();
+        assertTrue("Server failed to basic stop and basic start",server.isStarted());
+
+    }
+
     /**
      * Verify we are NOT using jandex
      *
      * @throws Exception
      */
-    @Test
+
     public void testNotUsingJandex() throws Exception {
         // Search for message indicating Jandex is being used.
         // CWWKC0092I: Read Jandex indexes for {0} out of {1} archives ({2} out of {3} classes) in {4}.
@@ -122,7 +129,7 @@ public class ServerRestartNewVersion extends LoggingTest {
      *
      * @throws Exception
      */
-    @Test
+
     public void testSimpleServlet() throws Exception {
 
         this.verifyResponse("/TestServlet40/SimpleTestServlet", "Hello World");
@@ -135,7 +142,7 @@ public class ServerRestartNewVersion extends LoggingTest {
      * @throws Exception
      *             if something goes horribly wrong
      */
-    @Test
+
     public void testServletHeader() throws Exception {
         WebResponse response = this.verifyResponse("/TestServlet40/MyServlet", "Hello World");
 
@@ -150,7 +157,7 @@ public class ServerRestartNewVersion extends LoggingTest {
      * @throws Exception
      */
 
-    @Test
+
     public void testServletContextMajorMinorVersion() throws Exception {
         this.verifyResponse("/TestServlet40/MyServlet?TestMajorMinorVersion=true", "majorVersion: 4");
 
