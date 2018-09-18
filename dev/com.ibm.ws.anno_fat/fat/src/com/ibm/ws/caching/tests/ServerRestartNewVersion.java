@@ -26,6 +26,7 @@ import com.ibm.ws.fat.util.LoggingTest;
 import com.ibm.ws.fat.util.SharedServer;
 import com.ibm.ws.fat.util.browser.WebResponse;
 import com.ibm.ws.caching.ApplicationMoverHelper;
+import componenttest.topology.impl.LibertyServer;
 
 /**
  * Test server.xml configuration where
