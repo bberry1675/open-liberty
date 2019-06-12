@@ -1,0 +1,10 @@
+<server description="Test server to verify zip reaper functionality">
+
+
+<logging traceSpecification="com.ibm.ws.artifact.zip*=all" />
+
+<include location="../fatTestPorts.xml"/>
+
+
+
+</server>
