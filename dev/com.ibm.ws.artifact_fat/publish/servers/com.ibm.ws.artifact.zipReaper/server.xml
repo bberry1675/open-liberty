@@ -9,5 +9,7 @@
 <include location="../fatTestPorts.xml"/>
 
 <application location="jarneeder.war"/>
+<application location="testServlet1.war" />
+<application location="testServlet2.war" />
 
 </server>
