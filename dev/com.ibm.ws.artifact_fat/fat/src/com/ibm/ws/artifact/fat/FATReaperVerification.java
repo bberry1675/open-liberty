@@ -199,7 +199,7 @@ public class FATReaperVerification{
         String line = zipCachingReader.readLine();
         long startTime = System.currentTimeMillis();
         while(line != null && (System.currentTimeMillis() - startTime) < 60000 ){
-            logInfo(methodName, line);
+            logInfo(methodName, ((line.equals("")) ? true : false) + "|||" + line );
 
             line = zipCachingReader.readLine();
         }
