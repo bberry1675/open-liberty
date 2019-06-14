@@ -50,34 +50,43 @@ public class DumpArchive extends ZipFile{
         super(dumpArchive);
     }
 
-    public boolean doesZipCachingIntrospectorDumpExist(){
-        //file path to introspector outputs: /dump_***/introspections/
-
-        //need to iterate overall entries
+    private ZipEntry getIntrospectorDumpFile(String introspectorFileName){
         Enumeration<? extends ZipEntry> e = entries();
         ZipEntry currentEntry = e.nextElement();
-        boolean retValue = false;
-
+        
+        //if there aren't any entries in the dump return null
         if(currentEntry == null){
-            return false;
+            return null;
         }
         else{
-            if(currentEntry.getName().contains(ZIP_CACHING_INTROSPECTOR_FILE_NAME)){
-                return true;
+            //if the first entry is the file we are looking for then return it
+            if(currentEntry.getName().contains(introspectorFileName) && !currentEntry.isDirectory()){
+                return currentEntry;
             }
+            //iterate over all the entires until the file is found
             while(e.hasMoreElements()){
+                //get the next zip entry
                 currentEntry = e.nextElement();
-                if(currentEntry.getName().contains(ZIP_CACHING_INTROSPECTOR_FILE_NAME))
-                    return true;
+                
+                //if the file is found the return it
+                if(currentEntry.getName().contains(introspectorFileName) && !currentEntry.isDirectory()){
+                    return currentEntry;
+                }
             }
+
+            return null;
         }
 
-        return retValue;
+    }
+
+    public boolean doesZipCachingIntrospectorDumpExist(){
+
+        return getIntrospectorDumpFile(ZIP_CACHING_INTROSPECTOR_FILE_NAME) != null;
     }
 
     public InputStream getZipCachingDumpStream() throws IOException{
         ZipEntry introspectorDump;
-        if((introspectorDump = getEntry(ZIP_CACHING_INTROSPECTOR_FILE_NAME)) != null){
+        if((introspectorDump = getIntrospectorDumpFile(ZIP_CACHING_INTROSPECTOR_FILE_NAME)) != null){
             return getInputStream(introspectorDump);
         }
         else{
