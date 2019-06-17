@@ -20,108 +20,186 @@ import java.util.HashMap;
 
 public class ZipCachingIntrospectorOutput{
     
-    String introspectorDescription;
-    Map<String, PropertyIntrospection> entryCacheSettings;
-    Map<String, PropertyIntrospection> zipReaperSettings;
-    Map<String, String> ActiveAndCachedZipFileHandles;
+    public String introspectorDescription, entryCacheSettings, zipReaperSettings, handleIntrospection, zipEntryCache, zipReaperValues;
+    public String activeAndPendingIntrospection;
+    public String pendingQuickIntrospection;
+    public String pendingSlowIntrospection;
+    public String completedIntrospection;
 
-    class PropertyIntrospection{
-
-        private final String propertyDescription, propertyName, propertyValue, propertyDefault;
-
-        public PropertyIntrospection(String propDesc, String propName, String propValue, String propDefault){
-            this.propertyDescription = propDesc;
-            this.propertyName = propName;
-            this.propertyValue = propValue;
-            this.propertyDefault = propDefault;
-        }
-
-        public String getPropertyDescription(){
-            return this.propertyDescription;
-        }
-        public String getPropertyName(){
-            return this.propertyName;
-        }
-        public String getPropertyValue(){
-            return this.propertyValue;
-        }
-        public String getPropertyDefault(){
-            return this.propertyDefault;
-        }
-
-    }
-
-
+    /*
     private PropertyIntrospection parsePropertyLine(String description, String line){
         String[] splitLine = line.split("\\s+[\\[\\]\\s]+\\s*");
         return new PropertyIntrospection(description, splitLine[1], splitLine[2], splitLine[3]);
     }
+    */
 
     public ZipCachingIntrospectorOutput(InputStream in) throws IOException{
         BufferedReader zipCachingReader = new BufferedReader(new InputStreamReader(in));
-        String currentLine;
+        String currentLine, aggregateLine;
 
+        zipCachingReader.readLine();//="The description of this introspector:"
+
+        introspectorDescription = zipCachingReader.readLine();//="Liberty zip file caching diagnostics"
+
+        do{
+            currentLine = zipCachingReader.readLine();
+        }while(!(currentLine.equals("No ZipCachingServiceImpl configured") || currentLine.equals("Entry Cache Settings:")));
+
+        //if there was no ZipCachingService to introspect then return early
+        if(currentLine.equals("No ZipCachingServiceImpl configured")){
+            zipCachingReader.close();
+            return;
+        }
+
+        aggregateLine = "";
+        currentLine = zipCachingReader.readLine();
+        while(!currentLine.equals("Zip Reaper Settings:")){
+            if(currentLine.equals("") == false){
+                aggregateLine = aggregateLine.concat(currentLine.concat("\n"));
+            }
+
+            currentLine = zipCachingReader.readLine();
+        }
+
+        entryCacheSettings = aggregateLine;
+        aggregateLine = "";
+
+        currentLine = zipCachingReader.readLine();
+        while(currentLine.equals("") == false){
+            aggregateLine = aggregateLine.concat(currentLine.concat("\n"));
+
+            currentLine = zipCachingReader.readLine();
+        }
+
+        zipReaperSettings = aggregateLine;
+        aggregateLine = "";
+
+        zipCachingReader.readLine();//="The entry cache is a cache of small zip file entries."
+        zipCachingReader.readLine();//="The entry cache is disabled if either setting is 0."
+        zipCachingReader.readLine();//=""
+        zipCachingReader.readLine();//="The zip reaper is a service which delays closes of zip files."
+        zipCachingReader.readLine();//="The zip reaper is disabled if the maximum pending closes setting is 0."
+        zipCachingReader.readLine();//=""
+        zipCachingReader.readLine();//="Active and Cached ZipFile Handles:"
+
+        currentLine = zipCachingReader.readLine();
+        if(currentLine.equals("  ** NONE **") == false){
+            while(currentLine.equals("") == false){
+                aggregateLine = aggregateLine.concat(currentLine.concat("\n"));
+    
+                currentLine = zipCachingReader.readLine();
+            }
+        }
+        else{
+            aggregateLine = null;
+            zipCachingReader.readLine();
+        }
         
-        currentLine = zipCachingReader.readLine();//= "The description of this introspector:"
+        handleIntrospection = aggregateLine;
+        aggregateLine = "";
 
-        if(currentLine == null){
-            throw new IOException("Could not read line from Zip Caching Introspector output file");
+        zipCachingReader.readLine();//="Zip Entry Cache:"
+
+        currentLine = zipCachingReader.readLine();
+        if(currentLine.equals("  ** DISABLED **") == false){
+            while(currentLine.equals("") == false){
+                aggregateLine = aggregateLine.concat(currentLine.concat("\n"));
+    
+                currentLine = zipCachingReader.readLine();
+            }
+        }
+        else{
+            aggregateLine = null;
+            zipCachingReader.readLine();
         }
 
-        currentLine = zipCachingReader.readLine();//= "Liberty zip file caching diagnostics"
-        introspectorDescription = currentLine;
+        zipEntryCache = aggregateLine;
+        aggregateLine = "";
 
-        currentLine = zipCachingReader.readLine();//= EMPTY
+        zipCachingReader.readLine();//="Zip Reaper:"
 
-        currentLine = zipCachingReader.readLine();//= "Zip Caching Service:"
-
-        currentLine = zipCachingReader.readLine();//= EMPTY
-
-        currentLine = zipCachingReader.readLine();//= "Entry Cache Settings:"
-        
-        entryCacheSettings = new HashMap<String,PropertyIntrospection>();
-        PropertyIntrospection tempHolder;
-
-        currentLine = zipCachingReader.readLine();//= First setting description or blank line
-        while(!currentLine.equals("")){
-            String propdes = currentLine;
-            currentLine = zipCachingReader.readLine();//= "[ prop_name ] [ prop_value ] [[ prop_default ]]"
-            tempHolder = parsePropertyLine(propdes, currentLine);
-            entryCacheSettings.put(tempHolder.getPropertyName(),tempHolder);
-            currentLine = zipCachingReader.readLine();//= next setting description or EMPTY
+        currentLine = zipCachingReader.readLine();
+        if(currentLine.equals("  ** DISABLED **") == false){
+            while(currentLine.equals("Active and Pending Data:") == false){
+                aggregateLine = aggregateLine.concat(currentLine.concat("\n"));
+    
+                currentLine = zipCachingReader.readLine();
+            }
+        }
+        else{
+            //nothing after Zip Reaper: if it is disabled
+            zipCachingReader.close();
+            return;
         }
 
-        currentLine = zipCachingReader.readLine();//= "Zip Reaper Settings:"
+        zipReaperValues = aggregateLine;
+        aggregateLine = "";
 
-        zipReaperSettings = new HashMap<String, PropertyIntrospection>();
-
-        currentLine = zipCachingReader.readLine();//= First reaper setting description or EMPTY
-        while(!currentLine.equals("")){
-            String propdes = currentLine;
-            currentLine = zipCachingReader.readLine();//="[ prop_name ] [ prop_value ] [[ prop_default ]]"
-            tempHolder = parsePropertyLine(propdes, currentLine);
-            zipReaperSettings.put(tempHolder.getPropertyName(),tempHolder);
-            currentLine = zipCachingReader.readLine();//= next setting description or EMPTY
+        currentLine = zipCachingReader.readLine();
+        if(currentLine.equals("  ** NONE **") == false){
+            while(currentLine.equals("Zip File Data [ pendingQuick ]") == false){
+                aggregateLine = aggregateLine.concat(currentLine.concat("\n"));
+    
+                currentLine = zipCachingReader.readLine();
+            }
+        }
+        else{
+            aggregateLine = null;
+            zipCachingReader.readLine();
+            currentLine = zipCachingReader.readLine();//="Zip File Data [ pendingQuick ]"
         }
 
-        currentLine = zipCachingReader.readLine();//= "The entry cache is a cache of small zip file entries."
-        currentLine = zipCachingReader.readLine();//= "The entry cache is disabled if either setting is 0."
-        currentLine = zipCachingReader.readLine();//= EMPTY
-        currentLine = zipCachingReader.readLine();//= "The zip reaper is a service which delays closes of zip files."
-        currentLine = zipCachingReader.readLine();//= "The zip reaper is disabled if the maximum pending closes setting is 0."
-        currentLine = zipCachingReader.readLine();//= EMPTY
-        
-        currentLine = zipCachingReader.readLine();//= "Active and Cached ZipFile Handles:"
+        activeAndPendingIntrospection = aggregateLine;
+        aggregateLine = "";
 
-        ActiveAndCachedZipFileHandles = new HashMap<String,String>();
-
-        currentLine = zipCachingReader.readLine();//= "  ** NONE **" or "ZipFileHandle@x0000000 (LOCATION,#)"
-        while(!currentLine.equals("") && !currentLine.equals("  ** NONE **")){
-            //can be the handle introspect or the toString() of ZipFileHandle
-
-            currentLine = zipCachingReader.readLine();//= "ZipFileHandle@x0000000 (LOCATION,#)" or EMPTY
+        currentLine = zipCachingReader.readLine();
+        if(currentLine.equals("  ** NONE **") == false){
+            while(currentLine.equals("Zip File Data [ pendingSlow ]") == false){
+                aggregateLine = aggregateLine.concat(currentLine.concat("\n"));
+    
+                currentLine = zipCachingReader.readLine();
+            }
+        }
+        else{
+            aggregateLine = null;
+            zipCachingReader.readLine();
+            currentLine = zipCachingReader.readLine();//="Zip File Data [ pendingSlow ]"
         }
 
+        pendingQuickIntrospection = aggregateLine;
+        aggregateLine = "";
+
+        currentLine = zipCachingReader.readLine();
+        if(currentLine.equals("  ** NONE **") == false){
+            while(!(currentLine.equals("Zip File Data [ completed ]") || currentLine.equals("Completed zip file data is not being tracked"))) {
+                aggregateLine = aggregateLine.concat(currentLine.concat("\n"));
+    
+                currentLine = zipCachingReader.readLine();
+            }
+        }
+        else{
+            aggregateLine = null;
+            zipCachingReader.readLine();
+            currentLine = zipCachingReader.readLine();//="Zip File Data [ completed ]"
+        }
+
+        pendingSlowIntrospection = aggregateLine;
+        aggregateLine = "";
+
+        if(currentLine.equals("Completed zip file data is not being tracked")){
+            zipCachingReader.close();
+            return;
+        }
+
+        zipCachingReader.readLine();//=""
+        currentLine = zipCachingReader.readLine();
+        while(currentLine != null){
+            aggregateLine = aggregateLine.concat(currentLine.concat("\n"));
+
+            currentLine = zipCachingReader.readLine();
+        }
+
+        completedIntrospection = aggregateLine;
 
         zipCachingReader.close();
     }

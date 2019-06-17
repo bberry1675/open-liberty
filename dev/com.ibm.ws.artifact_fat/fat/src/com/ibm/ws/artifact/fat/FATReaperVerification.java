@@ -19,6 +19,7 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
 
 import componenttest.annotation.Server;
 
@@ -97,10 +98,12 @@ public class FATReaperVerification{
         
         Assert.assertNotNull("Server reference is null in test class", server);
 
+
         //install applications to server for tests
         for(String appName: appNames){
             ShrinkHelper.defaultApp(server,appName, "com.ibm.ws.artifact.fat.servlet");
         }
+
 
         if(!server.isStarted()){
             server.startServer();
@@ -195,16 +198,31 @@ public class FATReaperVerification{
 
         Assert.assertTrue(DumpArchive.ZIP_CACHING_INTROSPECTOR_FILE_NAME + " was not found in archive: " + dump.getName(), dump.doesZipCachingIntrospectorDumpExist());
 
-        BufferedReader zipCachingReader = new BufferedReader(new InputStreamReader(dump.getZipCachingDumpStream()));
-        String line = zipCachingReader.readLine();
-        long startTime = System.currentTimeMillis();
-        while(line != null && (System.currentTimeMillis() - startTime) < 60000 ){
-            logInfo(methodName, ((line.equals("")) ? true : false) + "|||" + line );
-
-            line = zipCachingReader.readLine();
-        }
+        ZipCachingIntrospectorOutput dumpOutput = new ZipCachingIntrospectorOutput(dump.getZipCachingDumpStream()) ;
         
-        zipCachingReader.close();
+        logInfo(methodName,"--------------------------------------");
+        logInfo(methodName,dumpOutput.introspectorDescription);
+        logInfo(methodName,"--------------------------------------");
+        logInfo(methodName,dumpOutput.entryCacheSettings);
+        logInfo(methodName,"--------------------------------------");
+        logInfo(methodName,dumpOutput.zipReaperSettings);
+        logInfo(methodName,"--------------------------------------");
+        logInfo(methodName,dumpOutput.handleIntrospection);
+        logInfo(methodName,"--------------------------------------");
+        logInfo(methodName,dumpOutput.zipEntryCache);
+        logInfo(methodName,"--------------------------------------");
+        logInfo(methodName,dumpOutput.zipReaperValues);
+        logInfo(methodName,"--------------------------------------");
+        logInfo(methodName,dumpOutput.activeAndPendingIntrospection);
+        logInfo(methodName,"--------------------------------------");
+        logInfo(methodName, dumpOutput.pendingQuickIntrospection);
+        logInfo(methodName,"--------------------------------------");
+        logInfo(methodName, dumpOutput.pendingSlowIntrospection);
+        logInfo(methodName,"--------------------------------------");
+        logInfo(methodName, dumpOutput.completedIntrospection);
+        logInfo(methodName,"--------------------------------------");
+
+
         logInfo(methodName, "Exiting: " + methodName);
     }
 
