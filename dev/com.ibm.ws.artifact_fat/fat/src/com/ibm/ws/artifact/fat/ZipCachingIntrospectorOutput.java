@@ -51,9 +51,6 @@ public class ZipCachingIntrospectorOutput{
 
     }
 
-    class HandleIntrospection{
-        String 
-    }
 
     private PropertyIntrospection parsePropertyLine(String description, String line){
         String[] splitLine = line.split("\\s+[\\[\\]\\s]+\\s*");
