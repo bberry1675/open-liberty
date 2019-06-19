@@ -66,8 +66,11 @@ public class ConfigRESTHandlerAppDefinedResourcesTest extends FATServletClient {
                         .addAsLibraries(ShrinkWrap.create(JavaArchive.class)
                                         .addPackage("org.test.config.adapter")
                                         .addClass("org.test.config.jmsadapter.JMSConnectionFactoryImpl")
+                                        .addClass("org.test.config.jmsadapter.JMSDestinationImpl")
                                         .addClass("org.test.config.jmsadapter.JMSTopicConnectionFactoryImpl")
-                                        .addClass("org.test.config.jmsadapter.ManagedJMSTopicConnectionFactoryImpl"));
+                                        .addClass("org.test.config.jmsadapter.JMSTopicConnectionImpl")
+                                        .addClass("org.test.config.jmsadapter.ManagedJMSTopicConnectionFactoryImpl")
+                                        .addClass("org.test.config.jmsadapter.NoOpSessionImpl"));
         ShrinkHelper.exportToServer(server, "connectors", tca_rar);
 
         server.startServer();
@@ -90,6 +93,63 @@ public class ConfigRESTHandlerAppDefinedResourcesTest extends FATServletClient {
     @AfterClass
     public static void tearDown() throws Exception {
         server.stopServer();
+    }
+
+    /**
+     * Use the /ibm/api/config REST endpoint to obtain configuration for an application-defined administered object.
+     */
+    @Test
+    public void testAppDefinedAdminObject() throws Exception {
+        JsonObject cspec = new HttpsRequest(server, "/ibm/api/config/adminObject/adminObject%5Bjava:global%2Fenv%2Feis%2FconSpec1%5D")
+                        .run(JsonObject.class);
+        String err = "unexpected response: " + cspec;
+
+        assertEquals(err, "adminObject", cspec.getString("configElementName"));
+        assertEquals(err, "adminObject[java:global/env/eis/conSpec1]", cspec.getString("uid"));
+        assertEquals(err, "adminObject[java:global/env/eis/conSpec1]", cspec.getString("id"));
+        assertEquals(err, "java:global/env/eis/conSpec1", cspec.getString("jndiName"));
+
+        assertNull(err, cspec.get("application"));
+        assertNull(err, cspec.get("module"));
+        assertNull(err, cspec.get("component"));
+
+        JsonObject props;
+        assertNotNull(err, props = cspec.getJsonObject("properties.ConfigTestAdapter.ConnectionSpec"));
+        assertEquals(err, 4, props.size());
+        assertEquals(err, 10203l, props.getJsonNumber("connectionTimeout").longValue());
+        assertFalse(err, props.getBoolean("readOnly"));
+        assertEquals(err, "aouser1", props.getString("userName"));
+        assertEquals(err, "******", props.getString("password"));
+    }
+
+    /**
+     * Use the /ibm/api/config REST endpoint to obtain configuration for application-defined administered objects,
+     * querying by component.
+     */
+    @Test
+    public void testAppDefinedAdminObjectsQueryByComponent() throws Exception {
+        JsonArray ispecs = new HttpsRequest(server, "/ibm/api/config/adminObject?component=AppDefinedResourcesBean")
+                        .run(JsonArray.class);
+        String err = "unexpected response: " + ispecs;
+        assertEquals(err, 1, ispecs.size());
+
+        JsonObject ispec;
+        assertNotNull(err, ispec = ispecs.getJsonObject(0));
+        assertEquals(err, "adminObject", ispec.getString("configElementName"));
+        assertEquals(err, "application[AppDefResourcesApp]/module[AppDefResourcesEJB.jar]/component[AppDefinedResourcesBean]/adminObject[java:comp/env/eis/iSpec1]",
+                     ispec.getString("uid"));
+        assertEquals(err, "application[AppDefResourcesApp]/module[AppDefResourcesEJB.jar]/component[AppDefinedResourcesBean]/adminObject[java:comp/env/eis/iSpec1]",
+                     ispec.getString("id"));
+        assertEquals(err, "java:comp/env/eis/iSpec1", ispec.getString("jndiName"));
+
+        assertEquals(err, "AppDefResourcesApp", ispec.getString("application"));
+        assertEquals(err, "AppDefResourcesEJB.jar", ispec.getString("module"));
+        assertEquals(err, "AppDefinedResourcesBean", ispec.getString("component"));
+
+        JsonObject props;
+        assertNotNull(err, props = ispec.getJsonObject("properties.ConfigTestAdapter.InteractionSpec"));
+        assertEquals(err, 1, props.size());
+        assertEquals(err, "doSomethingUseful", props.getString("functionName"));
     }
 
     /**
@@ -139,7 +199,12 @@ public class ConfigRESTHandlerAppDefinedResourcesTest extends FATServletClient {
         assertEquals(err, "cfuser1", props.getString("userName"));
         assertEquals(err, "******", props.getString("password"));
 
-        // TODO api
+        JsonArray api;
+        assertNotNull(err, api = cf.getJsonArray("api"));
+        assertEquals(err, 1, api.size()); // increase if more REST API is added
+        assertEquals(err,
+                     "/ibm/api/validation/connectionFactory/application%5BAppDefResourcesApp%5D%2Fmodule%5BAppDefResourcesApp.war%5D%2FconnectionFactory%5Bjava%3Amodule%2Fenv%2Feis%2Fcf1%5D",
+                     api.getString(0));
 
         assertNotNull(err, cf = cfs.getJsonObject(1));
 
@@ -168,7 +233,11 @@ public class ConfigRESTHandlerAppDefinedResourcesTest extends FATServletClient {
         assertEquals(err, 1, props.size());
         assertEquals(err, "localhost", props.getString("hostName"));
 
-        // TODO api
+        assertNotNull(err, api = cf.getJsonArray("api"));
+        assertEquals(err, 1, api.size()); // increase if more REST API is added
+        assertEquals(err,
+                     "/ibm/api/validation/connectionFactory/application%5BAppDefResourcesApp%5D%2Fmodule%5BAppDefResourcesEJB.jar%5D%2FconnectionFactory%5Bjava%3Amodule%2Fenv%2Feis%2Fcf1%5D",
+                     api.getString(0));
 
         // TODO should transactionSupport really show as an attribute of connectionFactory?
     }
@@ -530,6 +599,30 @@ public class ConfigRESTHandlerAppDefinedResourcesTest extends FATServletClient {
     }
 
     /**
+     * Use the /ibm/api/config REST endpoint to obtain configuration for an application-defined JMS destination.
+     */
+    @Test
+    public void testAppDefinedDestination() throws Exception {
+        JsonObject q = new HttpsRequest(server, "/ibm/api/config/jmsDestination/jmsDestination%5Bjava:global%2Fenv%2Fjms%2Fdest1%5D")
+                        .run(JsonObject.class);
+        String err = "unexpected response: " + q;
+
+        assertEquals(err, "jmsDestination", q.getString("configElementName"));
+        assertEquals(err, "jmsDestination[java:global/env/jms/dest1]", q.getString("uid"));
+        assertEquals(err, "jmsDestination[java:global/env/jms/dest1]", q.getString("id"));
+        assertEquals(err, "java:global/env/jms/dest1", q.getString("jndiName"));
+
+        assertNull(err, q.get("application"));
+        assertNull(err, q.get("module"));
+        assertNull(err, q.get("component"));
+
+        JsonObject props;
+        assertNotNull(err, props = q.getJsonObject("properties.ConfigTestAdapter"));
+        assertEquals(err, 1, props.size());
+        assertEquals(err, "3605 Hwy 52N, Rochester, MN 55901", props.getString("destinationName"));
+    }
+
+    /**
      * Use the /ibm/api/config rest endpoint to obtain configuration for the jdbcDriver of an app-defined data source.
      */
     @Test
@@ -600,14 +693,14 @@ public class ConfigRESTHandlerAppDefinedResourcesTest extends FATServletClient {
 
         // support for containerAuthDataRef/recoveryAuthDataRef was never added to app-defined connection factories
 
-        // TODO internal properties should not be included (also a problem for dataSource and connectionFactory)
-        // assertNull(err, cf.get("creates.objectClass"));
-        // assertNull(err, cf.get("jndiName.unique"));
+        assertNull(err, cf.get("creates.objectClass"));
+        assertNull(err, cf.get("jndiName.unique"));
 
         JsonObject props;
         assertNotNull(err, props = cf.getJsonObject("properties.wasJms"));
         assertEquals(err, "cfBus", props.getString("busName"));
-        // assertEquals(err, "JMSClientID6", props.getString("clientID")); // TODO why isn't the configured value honored?
+        // TODO JMSConnectionFactoryResourceBuilder doesn't consider clientId (from annotation) and clientID (defined by resource adapter) to have the same meaning
+        // assertEquals(err, "JMSClientID6", props.getString("clientID"));
         assertEquals(err, "defaultME", props.getString("durableSubscriptionHome"));
         assertEquals(err, "ExpressNonPersistent", props.getString("nonPersistentMapping"));
         assertEquals(err, "ReliablePersistent", props.getString("persistentMapping"));
@@ -618,7 +711,12 @@ public class ConfigRESTHandlerAppDefinedResourcesTest extends FATServletClient {
         assertEquals(err, "jmsuser", props.getString("userName"));
         assertEquals(err, "******", props.getString("password"));
 
-        // TODO api
+        JsonArray api;
+        assertNotNull(err, api = cf.getJsonArray("api"));
+        assertEquals(err, 1, api.size()); // increase if more REST API is added
+        assertEquals(err,
+                     "/ibm/api/validation/jmsConnectionFactory/application%5BAppDefResourcesApp%5D%2Fmodule%5BAppDefResourcesApp.war%5D%2FjmsConnectionFactory%5Bjava%3Acomp%2Fenv%2Fjms%2Fcf%5D",
+                     api.getString(0));
     }
 
     /**
@@ -657,9 +755,8 @@ public class ConfigRESTHandlerAppDefinedResourcesTest extends FATServletClient {
 
         // support for containerAuthDataRef/recoveryAuthDataRef was never added to app-defined connection factories
 
-        // TODO internal properties should not be included (also a problem for dataSource and connectionFactory)
-        // assertNull(err, cf.get("creates.objectClass"));
-        // assertNull(err, cf.get("jndiName.unique"));
+        assertNull(err, cf.get("creates.objectClass"));
+        assertNull(err, cf.get("jndiName.unique"));
 
         JsonObject props;
         assertNotNull(err, props = cf.getJsonObject("properties.wasJms"));
@@ -672,7 +769,12 @@ public class ConfigRESTHandlerAppDefinedResourcesTest extends FATServletClient {
         assertNull(err, props.get("userName"));
         assertNull(err, props.get("password"));
 
-        // TODO api
+        JsonArray api;
+        assertNotNull(err, api = cf.getJsonArray("api"));
+        assertEquals(err, 1, api.size()); // increase if more REST API is added
+        assertEquals(err,
+                     "/ibm/api/validation/jmsQueueConnectionFactory/application%5BAppDefResourcesApp%5D%2Fmodule%5BAppDefResourcesApp.war%5D%2FjmsQueueConnectionFactory%5Bjava%3Amodule%2Fenv%2Fjms%2Fqcf%5D",
+                     api.getString(0));
     }
 
     /**
@@ -708,17 +810,83 @@ public class ConfigRESTHandlerAppDefinedResourcesTest extends FATServletClient {
 
         // support for containerAuthDataRef/recoveryAuthDataRef was never added to app-defined connection factories
 
-        // TODO internal properties should not be included (also a problem for dataSource and connectionFactory)
-        // assertNull(err, cf.get("creates.objectClass"));
-        // assertNull(err, cf.get("jndiName.unique"));
+        assertNull(err, cf.get("creates.objectClass"));
+        assertNull(err, cf.get("jndiName.unique"));
 
         JsonObject props;
         assertNotNull(err, props = cf.getJsonObject("properties.ConfigTestAdapter"));
-        assertTrue(err, props.getBoolean("enableBetaContent")); // TODO if JMS path had the same unfixed bug as JCA, this should have failed. Need to look into this.
+        assertTrue(err, props.getBoolean("enableBetaContent"));
         assertEquals(err, "localhost", props.getString("hostName"));
         assertEquals(err, 8765, props.getInt("portNumber"));
 
-        // TODO api
+        JsonArray api;
+        assertNotNull(err, api = cf.getJsonArray("api"));
+        assertEquals(err, 1, api.size()); // increase if more REST API is added
+        assertEquals(err,
+                     "/ibm/api/validation/jmsTopicConnectionFactory/application%5BAppDefResourcesApp%5D%2FjmsTopicConnectionFactory%5Bjava%3Aapp%2Fenv%2Fjms%2Ftcf%5D",
+                     api.getString(0));
+    }
+
+    /**
+     * Use the /ibm/api/config REST endpoint to obtain configuration for an application-defined JMS queue.
+     */
+    @Test
+    public void testAppDefinedQueue() throws Exception {
+        JsonObject q = new HttpsRequest(server, "/ibm/api/config/jmsQueue/application%5BAppDefResourcesApp%5D%2FjmsQueue%5Bjava:app%2Fenv%2Fjms%2Fqueue1%5D")
+                        .run(JsonObject.class);
+        String err = "unexpected response: " + q;
+
+        assertEquals(err, "jmsQueue", q.getString("configElementName"));
+        assertEquals(err, "application[AppDefResourcesApp]/jmsQueue[java:app/env/jms/queue1]", q.getString("uid"));
+        assertEquals(err, "application[AppDefResourcesApp]/jmsQueue[java:app/env/jms/queue1]", q.getString("id"));
+        assertEquals(err, "java:app/env/jms/queue1", q.getString("jndiName"));
+
+        assertEquals(err, "AppDefResourcesApp", q.getString("application"));
+        assertNull(err, q.get("module"));
+        assertNull(err, q.get("component"));
+
+        JsonObject props;
+        assertNotNull(err, props = q.getJsonObject("properties.wasJms"));
+        assertEquals(err, 4, props.size());
+        assertEquals(err, "Application", props.getString("deliveryMode"));
+        assertEquals(err, "MyQueue", props.getString("queueName"));
+        assertEquals(err, "AlwaysOff", props.getString("readAhead"));
+        assertEquals(err, 0l, props.getJsonNumber("timeToLive").longValue());
+    }
+
+    /**
+     * Use the /ibm/api/config REST endpoint to obtain configuration for application-defined administered objects,
+     * querying by module and component.
+     */
+    @Test
+    public void testAppDefinedTopicsQueryByModuleAndComponent() throws Exception {
+        JsonArray topics = new HttpsRequest(server, "/ibm/api/config/jmsTopic?module=AppDefResourcesEJB.jar&component=AppDefinedResourcesBean")
+                        .run(JsonArray.class);
+        String err = "unexpected response: " + topics;
+        assertEquals(err, 1, topics.size());
+
+        JsonObject topic;
+        assertNotNull(err, topic = topics.getJsonObject(0));
+        assertEquals(err, "jmsTopic", topic.getString("configElementName"));
+        assertEquals(err, "application[AppDefResourcesApp]/module[AppDefResourcesEJB.jar]/component[AppDefinedResourcesBean]/jmsTopic[java:comp/env/jms/topic1]",
+                     topic.getString("uid"));
+        assertEquals(err, "application[AppDefResourcesApp]/module[AppDefResourcesEJB.jar]/component[AppDefinedResourcesBean]/jmsTopic[java:comp/env/jms/topic1]",
+                     topic.getString("id"));
+        assertEquals(err, "java:comp/env/jms/topic1", topic.getString("jndiName"));
+
+        assertEquals(err, "AppDefResourcesApp", topic.getString("application"));
+        assertEquals(err, "AppDefResourcesEJB.jar", topic.getString("module"));
+        assertEquals(err, "AppDefinedResourcesBean", topic.getString("component"));
+
+        JsonObject props;
+        assertNotNull(err, props = topic.getJsonObject("properties.wasJms"));
+        assertEquals(err, 6, props.size());
+        assertEquals(err, "Application", props.getString("deliveryMode"));
+        assertEquals(err, 8, props.getInt("priority"));
+        assertEquals(err, "AsConnection", props.getString("readAhead"));
+        assertEquals(err, 246l, props.getJsonNumber("timeToLive").longValue());
+        assertEquals(err, "MyTopic", props.getString("topicName"));
+        assertEquals(err, "Default.Topic.Space", props.getString("topicSpace"));
     }
 
     /*
@@ -782,6 +950,49 @@ public class ConfigRESTHandlerAppDefinedResourcesTest extends FATServletClient {
         assertEquals(err, false, j.getBoolean("transactional"));
         assertNotNull(err, j = j.getJsonObject("properties.derby.embedded"));
         assertEquals(err, "memory:recoverydb", j.getString("databaseName"));
+    }
+
+    /**
+     * Use the /ibm/api/validator REST endpoint to validate application-defined connection factories
+     */
+    @Test
+    public void testValidateAppDefinedConnectionFactories() throws Exception {
+        JsonArray array = new HttpsRequest(server, "/ibm/api/validation/connectionFactory")
+                        .run(JsonArray.class);
+        String err = "unexpected response: " + array;
+        assertEquals(err, 2, array.size());
+
+        JsonObject j;
+        assertNotNull(err, j = array.getJsonObject(0)); // a javax.resource.cci.ConnectionFactory
+        assertEquals(err, "application[AppDefResourcesApp]/module[AppDefResourcesApp.war]/connectionFactory[java:module/env/eis/cf1]", j.getString("uid"));
+        assertEquals(err, "application[AppDefResourcesApp]/module[AppDefResourcesApp.war]/connectionFactory[java:module/env/eis/cf1]", j.getString("id"));
+        assertEquals(err, "java:module/env/eis/cf1", j.getString("jndiName"));
+        assertTrue(err, j.getBoolean("successful"));
+        assertNull(err, j.get("failure"));
+        assertNotNull(err, j = j.getJsonObject("info"));
+        assertEquals(err, "TestConfig Data Store, Enterprise Edition", j.getString("eisProductName"));
+        assertEquals(err, "48.55.72", j.getString("eisProductVersion"));
+        assertEquals(err, "TestConfigAdapter", j.getString("resourceAdapterName"));
+        assertEquals(err, "60.91.109", j.getString("resourceAdapterVersion"));
+        assertEquals(err, "OpenLiberty", j.getString("resourceAdapterVendor"));
+        assertEquals(err, "This tiny resource adapter doesn't do much at all.", j.getString("resourceAdapterDescription"));
+        assertEquals(err, "1.7", j.getString("connectorSpecVersion"));
+        assertEquals(err, "cfuser1", j.getString("user"));
+
+        assertNotNull(err, j = array.getJsonObject(1)); // a javax.sql.DataSource
+        assertEquals(err, "application[AppDefResourcesApp]/module[AppDefResourcesEJB.jar]/connectionFactory[java:module/env/eis/cf1]", j.getString("uid"));
+        assertEquals(err, "application[AppDefResourcesApp]/module[AppDefResourcesEJB.jar]/connectionFactory[java:module/env/eis/cf1]", j.getString("id"));
+        assertEquals(err, "java:module/env/eis/cf1", j.getString("jndiName"));
+        assertTrue(err, j.getBoolean("successful"));
+        assertNull(err, j.get("failure"));
+        assertNotNull(err, j = j.getJsonObject("info"));
+        assertEquals(err, "TestConfig Data Store, Enterprise Edition", j.getString("databaseProductName"));
+        assertEquals(err, "48.55.72", j.getString("databaseProductVersion"));
+        assertEquals(err, "TestConfigJDBCAdapter", j.getString("driverName"));
+        assertEquals(err, "65.72.97", j.getString("driverVersion"));
+        assertEquals(err, "TestConfigDB", j.getString("catalog"));
+        assertNull(err, j.get("schema"));
+        assertNull(err, j.get("user"));
     }
 
     /**
@@ -901,5 +1112,67 @@ public class ConfigRESTHandlerAppDefinedResourcesTest extends FATServletClient {
         assertEquals(err, "10.11.1.1 - (1616546)", info.getString("jdbcDriverVersion"));
         assertEquals(err, "DBUSER3", info.getString("schema"));
         assertEquals(err, "dbuser3", info.getString("user"));
+    }
+
+    /**
+     * Use the /ibm/api/validator REST endpoint to validate an application-defined JMS connection factory
+     */
+    @Test
+    public void testValidateAppDefinedJMSConnectionFactory() throws Exception {
+        JsonObject j = new HttpsRequest(server, "/ibm/api/validation/jmsConnectionFactory/application%5BAppDefResourcesApp%5D%2Fmodule%5BAppDefResourcesApp.war%5D%2FjmsConnectionFactory%5Bjava%3Acomp%2Fenv%2Fjms%2Fcf%5D")
+                        .run(JsonObject.class);
+        String err = "unexpected response: " + j;
+
+        assertEquals(err, "application[AppDefResourcesApp]/module[AppDefResourcesApp.war]/jmsConnectionFactory[java:comp/env/jms/cf]", j.getString("uid"));
+        assertEquals(err, "application[AppDefResourcesApp]/module[AppDefResourcesApp.war]/jmsConnectionFactory[java:comp/env/jms/cf]", j.getString("id"));
+        assertEquals(err, "java:comp/env/jms/cf", j.getString("jndiName"));
+        assertTrue(err, j.getBoolean("successful"));
+        assertNull(err, j.get("failure"));
+        assertNotNull(err, j = j.getJsonObject("info"));
+        assertEquals(err, "IBM", j.getString("jmsProviderName"));
+        assertEquals(err, "1.0", j.getString("jmsProviderVersion"));
+        assertEquals(err, "2.0", j.getString("jmsProviderSpecVersion"));
+        assertEquals(err, "clientID", j.getString("clientID"));
+    }
+
+    /**
+     * Use the /ibm/api/validator REST endpoint to validate an application-defined JMS queue connection factory
+     */
+    @Test
+    public void testValidateAppDefinedJMSQueueConnectionFactory() throws Exception {
+        JsonObject j = new HttpsRequest(server, "/ibm/api/validation/jmsQueueConnectionFactory/application%5BAppDefResourcesApp%5D%2Fmodule%5BAppDefResourcesApp.war%5D%2FjmsQueueConnectionFactory%5Bjava%3Amodule%2Fenv%2Fjms%2Fqcf%5D")
+                        .run(JsonObject.class);
+        String err = "unexpected response: " + j;
+
+        assertEquals(err, "application[AppDefResourcesApp]/module[AppDefResourcesApp.war]/jmsQueueConnectionFactory[java:module/env/jms/qcf]", j.getString("uid"));
+        assertEquals(err, "application[AppDefResourcesApp]/module[AppDefResourcesApp.war]/jmsQueueConnectionFactory[java:module/env/jms/qcf]", j.getString("id"));
+        assertEquals(err, "java:module/env/jms/qcf", j.getString("jndiName"));
+        assertTrue(err, j.getBoolean("successful"));
+        assertNull(err, j.get("failure"));
+        assertNotNull(err, j = j.getJsonObject("info"));
+        assertEquals(err, "IBM", j.getString("jmsProviderName"));
+        assertEquals(err, "1.0", j.getString("jmsProviderVersion"));
+        assertEquals(err, "2.0", j.getString("jmsProviderSpecVersion"));
+    }
+
+    /**
+     * Use the /ibm/api/validator REST endpoint to validate an application-defined JMS topic connection factory
+     */
+    @Test
+    public void testValidateAppDefinedJMSTopicConnectionFactory() throws Exception {
+        JsonObject j = new HttpsRequest(server, "/ibm/api/validation/jmsTopicConnectionFactory/application%5BAppDefResourcesApp%5D%2FjmsTopicConnectionFactory%5Bjava%3Aapp%2Fenv%2Fjms%2Ftcf%5D")
+                        .run(JsonObject.class);
+        String err = "unexpected response: " + j;
+
+        assertEquals(err, "application[AppDefResourcesApp]/jmsTopicConnectionFactory[java:app/env/jms/tcf]", j.getString("uid"));
+        assertEquals(err, "application[AppDefResourcesApp]/jmsTopicConnectionFactory[java:app/env/jms/tcf]", j.getString("id"));
+        assertEquals(err, "java:app/env/jms/tcf", j.getString("jndiName"));
+        assertTrue(err, j.getBoolean("successful"));
+        assertNull(err, j.get("failure"));
+        assertNotNull(err, j = j.getJsonObject("info"));
+        assertEquals(err, "TestConfig Messaging Provider", j.getString("jmsProviderName"));
+        assertEquals(err, "88.105.137", j.getString("jmsProviderVersion"));
+        assertEquals(err, "2.0", j.getString("jmsProviderSpecVersion"));
+        assertEquals(err, "AppDefinedClientId", j.getString("clientID"));
     }
 }

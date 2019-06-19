@@ -328,6 +328,12 @@ public class DirectoryOverlayContainerImpl implements OverlayContainer {
         this.cacheStore = null; // Null until a value is stored in the cache.
     }
 
+    private static void requireDirectory(File file) {
+        if ( !FileUtils.fileExists(file) || !Utils.fileIsDirectory(file) ) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     /**
      * Complete the initialization of this overlay container.
      * 
@@ -343,45 +349,69 @@ public class DirectoryOverlayContainerImpl implements OverlayContainer {
      */
     @Override
     public void setOverlayDirectory(File cacheDir, File overlayParentDir) {
-        // The cache directory must exist and must be a directory.
-        if ( !FileUtils.fileExists(cacheDir) || !Utils.fileIsDirectory(cacheDir) ) {
-            throw new IllegalArgumentException();
-        }
+        requireDirectory(cacheDir);
 
         this.cacheDir = cacheDir;
 
-        // Make sure the file overlay directory is usable.
-        //
-        // The file overlay directory is the directory named ".overlay" beneath
-        // the overlay parent directory.  The overlay directory is required
-        // to be the only file in the overlay parent directory.
-        //
-        // Then:
-        //
-        // (1) The file overlay parent directory must exist and must be a directory.
-        //
-        // (2) The file overlay directory will be created if it does not exist, but
-        // only if the parent overlay directory is empty.
-        //
-        // (3) The file overlay directory, if it already exists, must be a directory.
+        // if ( !( (FileUtils.listFiles(overlayParentDir).length == 0) ||
+        //         (FileUtils.fileExists(overlayDir) && Utils.fileIsDirectory(overlayDir)) ) ) {
+        //     throw new IllegalArgumentException();
+        // }
+        // if (!FileUtils.fileExists(overlayDir)) {
+        //     FileUtils.fileMkDirs(overlayDir);
+        // }
 
-        if ( !FileUtils.fileExists(overlayParentDir) ||
-             !Utils.fileIsDirectory(overlayParentDir) ) {
-            throw new IllegalArgumentException();
-        }
+        // Dir implies Exists
+        // Exists implies !Empty
+        //
+        // Empty; Exists; Dir : !(Empty || (Exists && Dir)) : Create
+        // T      F       F   :  F                          : T
+        // F      F       F   :  T                          : x
+        // F      T       F   :  T                          : x
+        // F      T       T   :  F                          : F
+
+        requireDirectory(overlayParentDir);
 
         File overlayDir = new File(overlayParentDir, ".overlay");
 
-        if ( !FileUtils.fileExists(overlayDir) ) {
-            if ( FileUtils.listFiles(overlayParentDir).length != 0 ) {
-                throw new IllegalArgumentException();
+        boolean overlayExists = FileUtils.fileExists(overlayDir);
+        boolean overlayIsDir = overlayExists && Utils.fileIsDirectory(overlayDir);
+
+        boolean altOverlayIsDir_1 = Utils.fileIsDirectory(overlayDir);
+        boolean altOverlayIsDir_2 = FileUtils.fileIsDirectory(overlayDir);
+
+        if ( altOverlayIsDir_1 != overlayIsDir ) {
+            System.out.println(
+                "Inconsistent directory test [ " + overlayDir.getAbsolutePath() + " ]:" +
+                " Exists + Utils [ " + overlayIsDir + " ] Utils [ " + altOverlayIsDir_1 + " ]"); 
+        }
+        if ( altOverlayIsDir_2 != overlayIsDir ) {
+            System.out.println(
+                "Inconsistent directory test [ " + overlayDir.getAbsolutePath() + " ]:" +
+                " Utils [ " + overlayIsDir + " ] FileUtils [ " + altOverlayIsDir_2 + " ]"); 
+        }
+
+        if ( !overlayIsDir ) {
+            if ( overlayExists ) {
+                throw new IllegalArgumentException("Overlay [ " + overlayDir.getAbsolutePath() + " ] exists and is not a directory");
             } else {
-                FileUtils.fileMkDirs(overlayDir);
+                File[] peers = FileUtils.listFiles(overlayParentDir);
+                if ( peers.length != 0 ) {
+                    System.out.println("Overlay parent [ " + overlayParentDir.getAbsolutePath() + " ]");
+                    System.out.println("Overlay [ " + overlayDir.getAbsolutePath() + " ]");
+                    for ( File peer : peers ) {
+                        System.out.println("  Peer [ " + peer.getName() + " ]");
+                    }
+                    throw new IllegalArgumentException(
+                        "Overlay [ " + overlayParentDir.getAbsolutePath() + " ]" +
+                        " has children, but does not have [ " + overlayDir.getAbsolutePath() + " ]");
+                } else {
+                    // Must not exist. 
+                    FileUtils.fileMkDirs(overlayDir);
+                }
             }
-        } else if ( !FileUtils.fileIsDirectory(overlayDir) ) {
-            throw new IllegalArgumentException();
         } else {
-            // Usable as is
+            // Exists as a directory: Use as is.
         }
 
         this.fileOverlayParentDir = overlayParentDir;
