@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.messaging.jms.defaultresource:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.messaging.jms.defaultresource:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.messaging.jms.defaultresource:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.messaging.jms.defaultresource:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.messaging.jms.defaultresource:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.messaging.jms.defaultresource:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.messaging.jms.defaultresource:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.messaging.jms.defaultresource:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.messaging.jms.defaultresource:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.messaging.jms.defaultresource:releaseNeeded"
+      }
+    }
+  ]
+}

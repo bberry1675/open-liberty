@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.security.authorization.jacc.ejb:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.security.authorization.jacc.ejb:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.security.authorization.jacc.ejb:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.security.authorization.jacc.ejb:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.security.authorization.jacc.ejb:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.security.authorization.jacc.ejb:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.security.authorization.jacc.ejb:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.security.authorization.jacc.ejb:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.security.authorization.jacc.ejb:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.security.authorization.jacc.ejb:releaseNeeded"
+      }
+    }
+  ]
+}

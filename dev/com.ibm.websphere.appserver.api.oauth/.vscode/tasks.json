@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.api.oauth:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.api.oauth:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.api.oauth:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.api.oauth:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.api.oauth:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.api.oauth:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.api.oauth:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.api.oauth:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.api.oauth:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.api.oauth:releaseNeeded"
+      }
+    }
+  ]
+}

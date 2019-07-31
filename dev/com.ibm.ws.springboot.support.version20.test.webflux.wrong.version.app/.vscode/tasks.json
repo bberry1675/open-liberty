@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.springboot.support.version20.test.webflux.wrong.version.app:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.springboot.support.version20.test.webflux.wrong.version.app:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.springboot.support.version20.test.webflux.wrong.version.app:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.springboot.support.version20.test.webflux.wrong.version.app:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.springboot.support.version20.test.webflux.wrong.version.app:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.springboot.support.version20.test.webflux.wrong.version.app:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.springboot.support.version20.test.webflux.wrong.version.app:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.springboot.support.version20.test.webflux.wrong.version.app:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.springboot.support.version20.test.webflux.wrong.version.app:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.springboot.support.version20.test.webflux.wrong.version.app:releaseNeeded"
+      }
+    }
+  ]
+}

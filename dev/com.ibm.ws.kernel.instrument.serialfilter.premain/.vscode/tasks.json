@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.kernel.instrument.serialfilter.premain:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.kernel.instrument.serialfilter.premain:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.kernel.instrument.serialfilter.premain:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.kernel.instrument.serialfilter.premain:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.kernel.instrument.serialfilter.premain:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.kernel.instrument.serialfilter.premain:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.kernel.instrument.serialfilter.premain:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.kernel.instrument.serialfilter.premain:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.kernel.instrument.serialfilter.premain:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.kernel.instrument.serialfilter.premain:releaseNeeded"
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.cxf.cxf.rt.ws.addr.2.6.2:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.cxf.cxf.rt.ws.addr.2.6.2:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.cxf.cxf.rt.ws.addr.2.6.2:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.cxf.cxf.rt.ws.addr.2.6.2:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.cxf.cxf.rt.ws.addr.2.6.2:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.cxf.cxf.rt.ws.addr.2.6.2:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.cxf.cxf.rt.ws.addr.2.6.2:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.cxf.cxf.rt.ws.addr.2.6.2:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.cxf.cxf.rt.ws.addr.2.6.2:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.cxf.cxf.rt.ws.addr.2.6.2:releaseNeeded"
+      }
+    }
+  ]
+}

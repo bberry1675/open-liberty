@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.security.wim.repository_test.custom:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.security.wim.repository_test.custom:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.security.wim.repository_test.custom:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.security.wim.repository_test.custom:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.security.wim.repository_test.custom:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.security.wim.repository_test.custom:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.security.wim.repository_test.custom:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.security.wim.repository_test.custom:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.security.wim.repository_test.custom:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.security.wim.repository_test.custom:releaseNeeded"
+      }
+    }
+  ]
+}

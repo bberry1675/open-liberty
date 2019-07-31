@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.aries.jmx.api:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.aries.jmx.api:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.aries.jmx.api:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.aries.jmx.api:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.aries.jmx.api:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.aries.jmx.api:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.aries.jmx.api:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.aries.jmx.api:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.aries.jmx.api:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.aries.jmx.api:releaseNeeded"
+      }
+    }
+  ]
+}

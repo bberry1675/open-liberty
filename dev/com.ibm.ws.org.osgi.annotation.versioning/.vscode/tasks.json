@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.osgi.annotation.versioning:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.osgi.annotation.versioning:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.osgi.annotation.versioning:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.osgi.annotation.versioning:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.osgi.annotation.versioning:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.osgi.annotation.versioning:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.osgi.annotation.versioning:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.osgi.annotation.versioning:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.osgi.annotation.versioning:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.osgi.annotation.versioning:releaseNeeded"
+      }
+    }
+  ]
+}

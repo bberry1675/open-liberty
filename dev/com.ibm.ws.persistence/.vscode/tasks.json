@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.persistence:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.persistence:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.persistence:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.persistence:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.persistence:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.persistence:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.persistence:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.persistence:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.persistence:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.persistence:releaseNeeded"
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.thirdparty.jsf-2.3:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.thirdparty.jsf-2.3:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.thirdparty.jsf-2.3:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.thirdparty.jsf-2.3:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.thirdparty.jsf-2.3:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.thirdparty.jsf-2.3:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.thirdparty.jsf-2.3:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.thirdparty.jsf-2.3:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.thirdparty.jsf-2.3:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.thirdparty.jsf-2.3:releaseNeeded"
+      }
+    }
+  ]
+}

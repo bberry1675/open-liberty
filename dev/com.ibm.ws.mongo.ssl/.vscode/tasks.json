@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.mongo.ssl:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.mongo.ssl:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.mongo.ssl:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.mongo.ssl:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.mongo.ssl:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.mongo.ssl:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.mongo.ssl:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.mongo.ssl:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.mongo.ssl:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.mongo.ssl:releaseNeeded"
+      }
+    }
+  ]
+}

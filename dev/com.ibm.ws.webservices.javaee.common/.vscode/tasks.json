@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.webservices.javaee.common:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.webservices.javaee.common:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.webservices.javaee.common:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.webservices.javaee.common:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.webservices.javaee.common:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.webservices.javaee.common:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.webservices.javaee.common:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.webservices.javaee.common:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.webservices.javaee.common:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.webservices.javaee.common:releaseNeeded"
+      }
+    }
+  ]
+}

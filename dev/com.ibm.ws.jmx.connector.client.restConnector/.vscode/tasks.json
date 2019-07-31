@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.jmx.connector.client.restConnector:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.jmx.connector.client.restConnector:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.jmx.connector.client.restConnector:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.jmx.connector.client.restConnector:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.jmx.connector.client.restConnector:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.jmx.connector.client.restConnector:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.jmx.connector.client.restConnector:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.jmx.connector.client.restConnector:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.jmx.connector.client.restConnector:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.jmx.connector.client.restConnector:releaseNeeded"
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.jsf.beanvalidation:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.jsf.beanvalidation:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.jsf.beanvalidation:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.jsf.beanvalidation:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.jsf.beanvalidation:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.jsf.beanvalidation:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.jsf.beanvalidation:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.jsf.beanvalidation:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.jsf.beanvalidation:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.jsf.beanvalidation:releaseNeeded"
+      }
+    }
+  ]
+}

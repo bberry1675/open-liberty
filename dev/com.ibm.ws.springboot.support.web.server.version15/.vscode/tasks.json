@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.springboot.support.web.server.version15:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.springboot.support.web.server.version15:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.springboot.support.web.server.version15:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.springboot.support.web.server.version15:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.springboot.support.web.server.version15:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.springboot.support.web.server.version15:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.springboot.support.web.server.version15:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.springboot.support.web.server.version15:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.springboot.support.web.server.version15:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.springboot.support.web.server.version15:releaseNeeded"
+      }
+    }
+  ]
+}

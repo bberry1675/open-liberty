@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.springboot.support.version21.test.app:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.springboot.support.version21.test.app:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.springboot.support.version21.test.app:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.springboot.support.version21.test.app:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.springboot.support.version21.test.app:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.springboot.support.version21.test.app:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.springboot.support.version21.test.app:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.springboot.support.version21.test.app:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.springboot.support.version21.test.app:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.springboot.support.version21.test.app:releaseNeeded"
+      }
+    }
+  ]
+}

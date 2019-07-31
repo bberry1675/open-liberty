@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.ejbcontainer.timer.persistent:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.ejbcontainer.timer.persistent:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.ejbcontainer.timer.persistent:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.ejbcontainer.timer.persistent:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.ejbcontainer.timer.persistent:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.ejbcontainer.timer.persistent:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.ejbcontainer.timer.persistent:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.ejbcontainer.timer.persistent:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.ejbcontainer.timer.persistent:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.ejbcontainer.timer.persistent:releaseNeeded"
+      }
+    }
+  ]
+}

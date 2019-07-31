@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.jaxrpc.stub:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.jaxrpc.stub:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.jaxrpc.stub:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.jaxrpc.stub:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.jaxrpc.stub:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.jaxrpc.stub:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.jaxrpc.stub:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.jaxrpc.stub:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.jaxrpc.stub:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.jaxrpc.stub:releaseNeeded"
+      }
+    }
+  ]
+}

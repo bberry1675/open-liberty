@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.wsspi.org.osgi.service.subsystem:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.wsspi.org.osgi.service.subsystem:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.wsspi.org.osgi.service.subsystem:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.wsspi.org.osgi.service.subsystem:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.wsspi.org.osgi.service.subsystem:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.wsspi.org.osgi.service.subsystem:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.wsspi.org.osgi.service.subsystem:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.wsspi.org.osgi.service.subsystem:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.wsspi.org.osgi.service.subsystem:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.wsspi.org.osgi.service.subsystem:releaseNeeded"
+      }
+    }
+  ]
+}

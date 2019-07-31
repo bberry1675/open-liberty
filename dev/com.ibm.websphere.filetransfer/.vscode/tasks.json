@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.filetransfer:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.filetransfer:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.filetransfer:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.filetransfer:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.filetransfer:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.filetransfer:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.filetransfer:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.filetransfer:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.filetransfer:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.filetransfer:releaseNeeded"
+      }
+    }
+  ]
+}

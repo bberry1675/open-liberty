@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.openid4java:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.openid4java:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.openid4java:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.openid4java:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.openid4java:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.openid4java:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.openid4java:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.openid4java:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.openid4java:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.openid4java:releaseNeeded"
+      }
+    }
+  ]
+}

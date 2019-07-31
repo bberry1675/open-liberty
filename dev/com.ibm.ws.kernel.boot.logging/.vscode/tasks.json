@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.kernel.boot.logging:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.kernel.boot.logging:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.kernel.boot.logging:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.kernel.boot.logging:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.kernel.boot.logging:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.kernel.boot.logging:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.kernel.boot.logging:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.kernel.boot.logging:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.kernel.boot.logging:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.kernel.boot.logging:releaseNeeded"
+      }
+    }
+  ]
+}

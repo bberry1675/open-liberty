@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.faulttolerance:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.faulttolerance:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.faulttolerance:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.faulttolerance:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.faulttolerance:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.faulttolerance:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.faulttolerance:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.faulttolerance:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.faulttolerance:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.faulttolerance:releaseNeeded"
+      }
+    }
+  ]
+}

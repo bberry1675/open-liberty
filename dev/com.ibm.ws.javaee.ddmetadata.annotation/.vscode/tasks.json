@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.javaee.ddmetadata.annotation:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.javaee.ddmetadata.annotation:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.javaee.ddmetadata.annotation:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.javaee.ddmetadata.annotation:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.javaee.ddmetadata.annotation:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.javaee.ddmetadata.annotation:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.javaee.ddmetadata.annotation:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.javaee.ddmetadata.annotation:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.javaee.ddmetadata.annotation:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.javaee.ddmetadata.annotation:releaseNeeded"
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.com.google.guava:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.com.google.guava:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.com.google.guava:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.com.google.guava:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.com.google.guava:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.com.google.guava:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.com.google.guava:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.com.google.guava:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.com.google.guava:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.com.google.guava:releaseNeeded"
+      }
+    }
+  ]
+}

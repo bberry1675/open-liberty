@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.security.mp.jwt.1.1.config:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.security.mp.jwt.1.1.config:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.security.mp.jwt.1.1.config:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.security.mp.jwt.1.1.config:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.security.mp.jwt.1.1.config:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.security.mp.jwt.1.1.config:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.security.mp.jwt.1.1.config:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.security.mp.jwt.1.1.config:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.security.mp.jwt.1.1.config:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.security.mp.jwt.1.1.config:releaseNeeded"
+      }
+    }
+  ]
+}

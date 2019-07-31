@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.eclipse.equinox.coordinator:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.eclipse.equinox.coordinator:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.eclipse.equinox.coordinator:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.eclipse.equinox.coordinator:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.eclipse.equinox.coordinator:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.eclipse.equinox.coordinator:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.eclipse.equinox.coordinator:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.eclipse.equinox.coordinator:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.eclipse.equinox.coordinator:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.eclipse.equinox.coordinator:releaseNeeded"
+      }
+    }
+  ]
+}

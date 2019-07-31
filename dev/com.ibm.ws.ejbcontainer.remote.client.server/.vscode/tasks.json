@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.ejbcontainer.remote.client.server:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.ejbcontainer.remote.client.server:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.ejbcontainer.remote.client.server:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.ejbcontainer.remote.client.server:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.ejbcontainer.remote.client.server:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.ejbcontainer.remote.client.server:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.ejbcontainer.remote.client.server:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.ejbcontainer.remote.client.server:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.ejbcontainer.remote.client.server:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.ejbcontainer.remote.client.server:releaseNeeded"
+      }
+    }
+  ]
+}

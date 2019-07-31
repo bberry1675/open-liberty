@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.api.basics:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.api.basics:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.api.basics:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.api.basics:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.api.basics:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.api.basics:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.api.basics:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.api.basics:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.api.basics:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.api.basics:releaseNeeded"
+      }
+    }
+  ]
+}

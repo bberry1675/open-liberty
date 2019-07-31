@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.io.smallrye.reactive.converters:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.io.smallrye.reactive.converters:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.io.smallrye.reactive.converters:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.io.smallrye.reactive.converters:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.io.smallrye.reactive.converters:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.io.smallrye.reactive.converters:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.io.smallrye.reactive.converters:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.io.smallrye.reactive.converters:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.io.smallrye.reactive.converters:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.io.smallrye.reactive.converters:releaseNeeded"
+      }
+    }
+  ]
+}

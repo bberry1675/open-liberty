@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.ejbcontainer.async:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.ejbcontainer.async:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.ejbcontainer.async:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.ejbcontainer.async:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.ejbcontainer.async:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.ejbcontainer.async:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.ejbcontainer.async:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.ejbcontainer.async:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.ejbcontainer.async:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.ejbcontainer.async:releaseNeeded"
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.opensaml.xmltooling:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.opensaml.xmltooling:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.opensaml.xmltooling:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.opensaml.xmltooling:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.opensaml.xmltooling:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.opensaml.xmltooling:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.opensaml.xmltooling:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.opensaml.xmltooling:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.opensaml.xmltooling:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.opensaml.xmltooling:releaseNeeded"
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.spi.federatedRepository:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.spi.federatedRepository:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.spi.federatedRepository:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.spi.federatedRepository:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.spi.federatedRepository:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.spi.federatedRepository:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.spi.federatedRepository:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.spi.federatedRepository:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.spi.federatedRepository:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.spi.federatedRepository:releaseNeeded"
+      }
+    }
+  ]
+}

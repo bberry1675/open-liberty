@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.logging.hpel:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.logging.hpel:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.logging.hpel:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.logging.hpel:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.logging.hpel:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.logging.hpel:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.logging.hpel:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.logging.hpel:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.logging.hpel:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.logging.hpel:releaseNeeded"
+      }
+    }
+  ]
+}

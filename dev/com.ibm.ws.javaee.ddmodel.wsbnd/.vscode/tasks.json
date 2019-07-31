@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.javaee.ddmodel.wsbnd:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.javaee.ddmodel.wsbnd:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.javaee.ddmodel.wsbnd:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.javaee.ddmodel.wsbnd:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.javaee.ddmodel.wsbnd:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.javaee.ddmodel.wsbnd:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.javaee.ddmodel.wsbnd:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.javaee.ddmodel.wsbnd:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.javaee.ddmodel.wsbnd:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.javaee.ddmodel.wsbnd:releaseNeeded"
+      }
+    }
+  ]
+}

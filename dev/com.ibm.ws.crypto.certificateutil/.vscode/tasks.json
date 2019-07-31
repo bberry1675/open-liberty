@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.crypto.certificateutil:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.crypto.certificateutil:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.crypto.certificateutil:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.crypto.certificateutil:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.crypto.certificateutil:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.crypto.certificateutil:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.crypto.certificateutil:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.crypto.certificateutil:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.crypto.certificateutil:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.crypto.certificateutil:releaseNeeded"
+      }
+    }
+  ]
+}

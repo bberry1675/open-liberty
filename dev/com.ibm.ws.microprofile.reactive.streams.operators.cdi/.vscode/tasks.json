@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.reactive.streams.operators.cdi:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.reactive.streams.operators.cdi:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.reactive.streams.operators.cdi:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.reactive.streams.operators.cdi:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.reactive.streams.operators.cdi:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.reactive.streams.operators.cdi:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.reactive.streams.operators.cdi:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.reactive.streams.operators.cdi:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.reactive.streams.operators.cdi:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.reactive.streams.operators.cdi:releaseNeeded"
+      }
+    }
+  ]
+}

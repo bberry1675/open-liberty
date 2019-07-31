@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.rls.jdbc:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.rls.jdbc:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.rls.jdbc:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.rls.jdbc:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.rls.jdbc:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.rls.jdbc:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.rls.jdbc:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.rls.jdbc:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.rls.jdbc:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.rls.jdbc:releaseNeeded"
+      }
+    }
+  ]
+}

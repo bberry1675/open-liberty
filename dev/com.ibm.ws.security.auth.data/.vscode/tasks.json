@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.security.auth.data:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.security.auth.data:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.security.auth.data:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.security.auth.data:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.security.auth.data:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.security.auth.data:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.security.auth.data:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.security.auth.data:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.security.auth.data:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.security.auth.data:releaseNeeded"
+      }
+    }
+  ]
+}

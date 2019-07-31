@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.cxf.ws.mex:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.cxf.ws.mex:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.cxf.ws.mex:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.cxf.ws.mex:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.cxf.ws.mex:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.cxf.ws.mex:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.cxf.ws.mex:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.cxf.ws.mex:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.cxf.ws.mex:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.cxf.ws.mex:releaseNeeded"
+      }
+    }
+  ]
+}

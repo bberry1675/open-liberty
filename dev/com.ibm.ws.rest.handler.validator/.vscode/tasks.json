@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.rest.handler.validator:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.rest.handler.validator:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.rest.handler.validator:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.rest.handler.validator:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.rest.handler.validator:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.rest.handler.validator:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.rest.handler.validator:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.rest.handler.validator:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.rest.handler.validator:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.rest.handler.validator:releaseNeeded"
+      }
+    }
+  ]
+}

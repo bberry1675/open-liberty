@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.app.manager.client:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.app.manager.client:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.app.manager.client:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.app.manager.client:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.app.manager.client:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.app.manager.client:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.app.manager.client:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.app.manager.client:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.app.manager.client:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.app.manager.client:releaseNeeded"
+      }
+    }
+  ]
+}

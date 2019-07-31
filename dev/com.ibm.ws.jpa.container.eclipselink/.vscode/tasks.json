@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.jpa.container.eclipselink:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.jpa.container.eclipselink:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.jpa.container.eclipselink:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.jpa.container.eclipselink:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.jpa.container.eclipselink:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.jpa.container.eclipselink:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.jpa.container.eclipselink:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.jpa.container.eclipselink:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.jpa.container.eclipselink:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.jpa.container.eclipselink:releaseNeeded"
+      }
+    }
+  ]
+}

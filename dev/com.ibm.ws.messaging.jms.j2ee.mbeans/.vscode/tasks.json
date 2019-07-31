@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.messaging.jms.j2ee.mbeans:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.messaging.jms.j2ee.mbeans:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.messaging.jms.j2ee.mbeans:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.messaging.jms.j2ee.mbeans:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.messaging.jms.j2ee.mbeans:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.messaging.jms.j2ee.mbeans:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.messaging.jms.j2ee.mbeans:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.messaging.jms.j2ee.mbeans:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.messaging.jms.j2ee.mbeans:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.messaging.jms.j2ee.mbeans:releaseNeeded"
+      }
+    }
+  ]
+}

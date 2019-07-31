@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.org.eclipse.microprofile.health.1.0:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.org.eclipse.microprofile.health.1.0:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.org.eclipse.microprofile.health.1.0:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.org.eclipse.microprofile.health.1.0:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.org.eclipse.microprofile.health.1.0:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.org.eclipse.microprofile.health.1.0:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.org.eclipse.microprofile.health.1.0:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.org.eclipse.microprofile.health.1.0:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.org.eclipse.microprofile.health.1.0:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.org.eclipse.microprofile.health.1.0:releaseNeeded"
+      }
+    }
+  ]
+}

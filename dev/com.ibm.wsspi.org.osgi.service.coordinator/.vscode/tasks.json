@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.wsspi.org.osgi.service.coordinator:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.wsspi.org.osgi.service.coordinator:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.wsspi.org.osgi.service.coordinator:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.wsspi.org.osgi.service.coordinator:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.wsspi.org.osgi.service.coordinator:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.wsspi.org.osgi.service.coordinator:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.wsspi.org.osgi.service.coordinator:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.wsspi.org.osgi.service.coordinator:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.wsspi.org.osgi.service.coordinator:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.wsspi.org.osgi.service.coordinator:releaseNeeded"
+      }
+    }
+  ]
+}

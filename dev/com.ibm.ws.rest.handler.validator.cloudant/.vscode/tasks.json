@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.rest.handler.validator.cloudant:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.rest.handler.validator.cloudant:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.rest.handler.validator.cloudant:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.rest.handler.validator.cloudant:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.rest.handler.validator.cloudant:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.rest.handler.validator.cloudant:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.rest.handler.validator.cloudant:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.rest.handler.validator.cloudant:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.rest.handler.validator.cloudant:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.rest.handler.validator.cloudant:releaseNeeded"
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.felix.gogo.command:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.felix.gogo.command:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.felix.gogo.command:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.felix.gogo.command:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.felix.gogo.command:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.felix.gogo.command:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.felix.gogo.command:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.felix.gogo.command:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.felix.gogo.command:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.felix.gogo.command:releaseNeeded"
+      }
+    }
+  ]
+}

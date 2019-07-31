@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.servicemix.bundles.bcel:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.servicemix.bundles.bcel:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.servicemix.bundles.bcel:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.servicemix.bundles.bcel:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.servicemix.bundles.bcel:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.servicemix.bundles.bcel:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.servicemix.bundles.bcel:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.servicemix.bundles.bcel:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.servicemix.bundles.bcel:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.servicemix.bundles.bcel:releaseNeeded"
+      }
+    }
+  ]
+}

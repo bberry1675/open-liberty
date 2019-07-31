@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.persistence.utility.generateddlutil:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.persistence.utility.generateddlutil:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.persistence.utility.generateddlutil:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.persistence.utility.generateddlutil:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.persistence.utility.generateddlutil:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.persistence.utility.generateddlutil:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.persistence.utility.generateddlutil:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.persistence.utility.generateddlutil:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.persistence.utility.generateddlutil:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.persistence.utility.generateddlutil:releaseNeeded"
+      }
+    }
+  ]
+}

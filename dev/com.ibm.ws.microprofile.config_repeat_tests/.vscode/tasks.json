@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.config_repeat_tests:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.config_repeat_tests:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.config_repeat_tests:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.config_repeat_tests:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.config_repeat_tests:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.config_repeat_tests:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.config_repeat_tests:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.config_repeat_tests:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.config_repeat_tests:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.config_repeat_tests:releaseNeeded"
+      }
+    }
+  ]
+}

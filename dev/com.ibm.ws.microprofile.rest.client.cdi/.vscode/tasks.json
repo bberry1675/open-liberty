@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.rest.client.cdi:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.rest.client.cdi:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.rest.client.cdi:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.rest.client.cdi:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.rest.client.cdi:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.rest.client.cdi:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.rest.client.cdi:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.rest.client.cdi:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.rest.client.cdi:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.rest.client.cdi:releaseNeeded"
+      }
+    }
+  ]
+}

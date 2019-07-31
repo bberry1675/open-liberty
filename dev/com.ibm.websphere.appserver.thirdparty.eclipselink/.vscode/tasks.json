@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.thirdparty.eclipselink:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.thirdparty.eclipselink:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.thirdparty.eclipselink:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.thirdparty.eclipselink:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.thirdparty.eclipselink:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.thirdparty.eclipselink:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.thirdparty.eclipselink:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.thirdparty.eclipselink:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.thirdparty.eclipselink:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.thirdparty.eclipselink:releaseNeeded"
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.org.osgi.service.blueprint:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.org.osgi.service.blueprint:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.org.osgi.service.blueprint:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.org.osgi.service.blueprint:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.org.osgi.service.blueprint:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.org.osgi.service.blueprint:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.org.osgi.service.blueprint:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.org.osgi.service.blueprint:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.org.osgi.service.blueprint:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.org.osgi.service.blueprint:releaseNeeded"
+      }
+    }
+  ]
+}

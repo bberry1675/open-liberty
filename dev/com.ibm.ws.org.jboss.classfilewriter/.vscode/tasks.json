@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.jboss.classfilewriter:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.jboss.classfilewriter:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.jboss.classfilewriter:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.jboss.classfilewriter:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.jboss.classfilewriter:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.jboss.classfilewriter:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.jboss.classfilewriter:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.jboss.classfilewriter:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.jboss.classfilewriter:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.jboss.classfilewriter:releaseNeeded"
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.channel.ssl:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.channel.ssl:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.channel.ssl:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.channel.ssl:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.channel.ssl:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.channel.ssl:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.channel.ssl:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.channel.ssl:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.channel.ssl:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.channel.ssl:releaseNeeded"
+      }
+    }
+  ]
+}

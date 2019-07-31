@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.security.wim.adapter.ldap:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.security.wim.adapter.ldap:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.security.wim.adapter.ldap:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.security.wim.adapter.ldap:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.security.wim.adapter.ldap:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.security.wim.adapter.ldap:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.security.wim.adapter.ldap:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.security.wim.adapter.ldap:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.security.wim.adapter.ldap:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.security.wim.adapter.ldap:releaseNeeded"
+      }
+    }
+  ]
+}

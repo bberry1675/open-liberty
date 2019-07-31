@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.logging.hpel.binarylogviewer:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.logging.hpel.binarylogviewer:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.logging.hpel.binarylogviewer:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.logging.hpel.binarylogviewer:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.logging.hpel.binarylogviewer:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.logging.hpel.binarylogviewer:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.logging.hpel.binarylogviewer:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.logging.hpel.binarylogviewer:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.logging.hpel.binarylogviewer:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.logging.hpel.binarylogviewer:releaseNeeded"
+      }
+    }
+  ]
+}

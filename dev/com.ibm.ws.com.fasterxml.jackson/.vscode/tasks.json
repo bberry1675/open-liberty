@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.com.fasterxml.jackson:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.com.fasterxml.jackson:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.com.fasterxml.jackson:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.com.fasterxml.jackson:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.com.fasterxml.jackson:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.com.fasterxml.jackson:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.com.fasterxml.jackson:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.com.fasterxml.jackson:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.com.fasterxml.jackson:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.com.fasterxml.jackson:releaseNeeded"
+      }
+    }
+  ]
+}

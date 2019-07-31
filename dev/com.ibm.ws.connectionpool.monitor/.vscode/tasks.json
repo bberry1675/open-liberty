@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.connectionpool.monitor:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.connectionpool.monitor:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.connectionpool.monitor:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.connectionpool.monitor:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.connectionpool.monitor:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.connectionpool.monitor:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.connectionpool.monitor:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.connectionpool.monitor:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.connectionpool.monitor:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.connectionpool.monitor:releaseNeeded"
+      }
+    }
+  ]
+}

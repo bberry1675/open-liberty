@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.spi.containerServices:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.spi.containerServices:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.spi.containerServices:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.spi.containerServices:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.spi.containerServices:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.spi.containerServices:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.spi.containerServices:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.spi.containerServices:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.spi.containerServices:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.spi.containerServices:releaseNeeded"
+      }
+    }
+  ]
+}

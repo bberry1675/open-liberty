@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.crypto.passwordutil:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.crypto.passwordutil:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.crypto.passwordutil:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.crypto.passwordutil:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.crypto.passwordutil:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.crypto.passwordutil:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.crypto.passwordutil:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.crypto.passwordutil:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.crypto.passwordutil:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.crypto.passwordutil:releaseNeeded"
+      }
+    }
+  ]
+}

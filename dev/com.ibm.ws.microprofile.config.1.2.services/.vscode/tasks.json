@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.config.1.2.services:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.config.1.2.services:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.config.1.2.services:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.config.1.2.services:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.config.1.2.services:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.config.1.2.services:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.config.1.2.services:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.config.1.2.services:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.config.1.2.services:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.config.1.2.services:releaseNeeded"
+      }
+    }
+  ]
+}

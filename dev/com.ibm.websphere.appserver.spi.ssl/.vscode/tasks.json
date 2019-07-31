@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.spi.ssl:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.spi.ssl:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.spi.ssl:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.spi.ssl:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.spi.ssl:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.spi.ssl:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.spi.ssl:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.spi.ssl:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.spi.ssl:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.spi.ssl:releaseNeeded"
+      }
+    }
+  ]
+}

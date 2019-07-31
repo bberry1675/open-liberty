@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.jboss.weld:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.jboss.weld:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.jboss.weld:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.jboss.weld:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.jboss.weld:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.jboss.weld:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.jboss.weld:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.jboss.weld:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.jboss.weld:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.jboss.weld:releaseNeeded"
+      }
+    }
+  ]
+}

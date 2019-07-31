@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.wsspi.thirdparty.equinox:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.wsspi.thirdparty.equinox:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.wsspi.thirdparty.equinox:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.wsspi.thirdparty.equinox:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.wsspi.thirdparty.equinox:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.wsspi.thirdparty.equinox:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.wsspi.thirdparty.equinox:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.wsspi.thirdparty.equinox:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.wsspi.thirdparty.equinox:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.wsspi.thirdparty.equinox:releaseNeeded"
+      }
+    }
+  ]
+}

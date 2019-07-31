@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.interrupt:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.interrupt:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.interrupt:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.interrupt:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.interrupt:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.interrupt:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.interrupt:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.interrupt:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.interrupt:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.interrupt:releaseNeeded"
+      }
+    }
+  ]
+}

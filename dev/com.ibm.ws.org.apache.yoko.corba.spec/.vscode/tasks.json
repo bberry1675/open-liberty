@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.yoko.corba.spec:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.yoko.corba.spec:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.yoko.corba.spec:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.yoko.corba.spec:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.yoko.corba.spec:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.yoko.corba.spec:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.yoko.corba.spec:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.yoko.corba.spec:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.yoko.corba.spec:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.yoko.corba.spec:releaseNeeded"
+      }
+    }
+  ]
+}

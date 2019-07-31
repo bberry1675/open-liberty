@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.config.server.schemagen.serverschemagen:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.config.server.schemagen.serverschemagen:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.config.server.schemagen.serverschemagen:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.config.server.schemagen.serverschemagen:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.config.server.schemagen.serverschemagen:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.config.server.schemagen.serverschemagen:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.config.server.schemagen.serverschemagen:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.config.server.schemagen.serverschemagen:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.config.server.schemagen.serverschemagen:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.config.server.schemagen.serverschemagen:releaseNeeded"
+      }
+    }
+  ]
+}

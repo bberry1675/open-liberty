@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.io.smallrye.reactive.messaging:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.io.smallrye.reactive.messaging:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.io.smallrye.reactive.messaging:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.io.smallrye.reactive.messaging:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.io.smallrye.reactive.messaging:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.io.smallrye.reactive.messaging:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.io.smallrye.reactive.messaging:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.io.smallrye.reactive.messaging:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.io.smallrye.reactive.messaging:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.io.smallrye.reactive.messaging:releaseNeeded"
+      }
+    }
+  ]
+}

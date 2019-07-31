@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.javaee.platform.v7:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.javaee.platform.v7:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.javaee.platform.v7:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.javaee.platform.v7:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.javaee.platform.v7:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.javaee.platform.v7:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.javaee.platform.v7:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.javaee.platform.v7:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.javaee.platform.v7:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.javaee.platform.v7:releaseNeeded"
+      }
+    }
+  ]
+}

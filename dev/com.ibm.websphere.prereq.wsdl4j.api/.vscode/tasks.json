@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.prereq.wsdl4j.api:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.prereq.wsdl4j.api:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.prereq.wsdl4j.api:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.prereq.wsdl4j.api:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.prereq.wsdl4j.api:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.prereq.wsdl4j.api:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.prereq.wsdl4j.api:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.prereq.wsdl4j.api:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.prereq.wsdl4j.api:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.prereq.wsdl4j.api:releaseNeeded"
+      }
+    }
+  ]
+}

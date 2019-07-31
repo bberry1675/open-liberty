@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.spi.jaspic:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.spi.jaspic:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.spi.jaspic:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.spi.jaspic:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.spi.jaspic:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.spi.jaspic:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.spi.jaspic:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.spi.jaspic:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.spi.jaspic:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.spi.jaspic:releaseNeeded"
+      }
+    }
+  ]
+}

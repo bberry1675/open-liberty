@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.yoko.osgi:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.yoko.osgi:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.yoko.osgi:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.yoko.osgi:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.yoko.osgi:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.yoko.osgi:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.yoko.osgi:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.yoko.osgi:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.yoko.osgi:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.yoko.osgi:releaseNeeded"
+      }
+    }
+  ]
+}

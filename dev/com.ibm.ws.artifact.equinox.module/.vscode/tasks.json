@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.artifact.equinox.module:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.artifact.equinox.module:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.artifact.equinox.module:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.artifact.equinox.module:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.artifact.equinox.module:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.artifact.equinox.module:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.artifact.equinox.module:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.artifact.equinox.module:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.artifact.equinox.module:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.artifact.equinox.module:releaseNeeded"
+      }
+    }
+  ]
+}

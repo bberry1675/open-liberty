@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.commons.compress:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.commons.compress:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.commons.compress:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.commons.compress:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.commons.compress:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.commons.compress:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.commons.compress:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.commons.compress:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.commons.compress:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.commons.compress:releaseNeeded"
+      }
+    }
+  ]
+}

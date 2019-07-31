@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.openapi.model:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.openapi.model:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.openapi.model:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.openapi.model:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.openapi.model:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.openapi.model:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.openapi.model:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.openapi.model:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.openapi.model:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.openapi.model:releaseNeeded"
+      }
+    }
+  ]
+}

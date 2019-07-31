@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.thirdparty.opentracing:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.thirdparty.opentracing:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.thirdparty.opentracing:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.thirdparty.opentracing:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.thirdparty.opentracing:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.thirdparty.opentracing:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.thirdparty.opentracing:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.thirdparty.opentracing:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.appserver.thirdparty.opentracing:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.appserver.thirdparty.opentracing:releaseNeeded"
+      }
+    }
+  ]
+}

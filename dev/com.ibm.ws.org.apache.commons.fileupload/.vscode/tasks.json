@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.commons.fileupload:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.commons.fileupload:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.commons.fileupload:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.commons.fileupload:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.commons.fileupload:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.commons.fileupload:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.commons.fileupload:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.commons.fileupload:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.commons.fileupload:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.commons.fileupload:releaseNeeded"
+      }
+    }
+  ]
+}

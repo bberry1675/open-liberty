@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.httpcomponents:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.httpcomponents:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.httpcomponents:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.httpcomponents:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.httpcomponents:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.httpcomponents:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.httpcomponents:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.httpcomponents:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.httpcomponents:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.httpcomponents:releaseNeeded"
+      }
+    }
+  ]
+}

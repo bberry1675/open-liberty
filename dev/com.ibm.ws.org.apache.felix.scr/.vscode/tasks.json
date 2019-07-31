@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.felix.scr:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.felix.scr:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.felix.scr:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.felix.scr:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.felix.scr:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.felix.scr:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.felix.scr:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.felix.scr:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.org.apache.felix.scr:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.org.apache.felix.scr:releaseNeeded"
+      }
+    }
+  ]
+}

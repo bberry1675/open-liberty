@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.io.leangen.graphql.spqr.0.9.9:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.io.leangen.graphql.spqr.0.9.9:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.io.leangen.graphql.spqr.0.9.9:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.io.leangen.graphql.spqr.0.9.9:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.io.leangen.graphql.spqr.0.9.9:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.io.leangen.graphql.spqr.0.9.9:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.io.leangen.graphql.spqr.0.9.9:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.io.leangen.graphql.spqr.0.9.9:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.io.leangen.graphql.spqr.0.9.9:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.io.leangen.graphql.spqr.0.9.9:releaseNeeded"
+      }
+    }
+  ]
+}

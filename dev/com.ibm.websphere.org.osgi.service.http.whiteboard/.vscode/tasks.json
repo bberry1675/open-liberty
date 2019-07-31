@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.org.osgi.service.http.whiteboard:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.org.osgi.service.http.whiteboard:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.org.osgi.service.http.whiteboard:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.org.osgi.service.http.whiteboard:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.org.osgi.service.http.whiteboard:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.org.osgi.service.http.whiteboard:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.org.osgi.service.http.whiteboard:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.org.osgi.service.http.whiteboard:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.websphere.org.osgi.service.http.whiteboard:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.websphere.org.osgi.service.http.whiteboard:releaseNeeded"
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.request.probes:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.request.probes:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.request.probes:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.request.probes:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.request.probes:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.request.probes:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.request.probes:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.request.probes:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.request.probes:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.request.probes:releaseNeeded"
+      }
+    }
+  ]
+}

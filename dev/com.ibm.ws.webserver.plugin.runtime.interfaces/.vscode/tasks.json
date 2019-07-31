@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.webserver.plugin.runtime.interfaces:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.webserver.plugin.runtime.interfaces:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.webserver.plugin.runtime.interfaces:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.webserver.plugin.runtime.interfaces:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.webserver.plugin.runtime.interfaces:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.webserver.plugin.runtime.interfaces:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.webserver.plugin.runtime.interfaces:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.webserver.plugin.runtime.interfaces:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.webserver.plugin.runtime.interfaces:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.webserver.plugin.runtime.interfaces:releaseNeeded"
+      }
+    }
+  ]
+}

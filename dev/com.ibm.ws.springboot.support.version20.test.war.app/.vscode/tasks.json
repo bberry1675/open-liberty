@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.springboot.support.version20.test.war.app:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.springboot.support.version20.test.war.app:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.springboot.support.version20.test.war.app:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.springboot.support.version20.test.war.app:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.springboot.support.version20.test.war.app:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.springboot.support.version20.test.war.app:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.springboot.support.version20.test.war.app:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.springboot.support.version20.test.war.app:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.springboot.support.version20.test.war.app:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.springboot.support.version20.test.war.app:releaseNeeded"
+      }
+    }
+  ]
+}

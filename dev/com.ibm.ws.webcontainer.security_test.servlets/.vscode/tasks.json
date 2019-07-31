@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.webcontainer.security_test.servlets:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.webcontainer.security_test.servlets:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.webcontainer.security_test.servlets:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.webcontainer.security_test.servlets:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.webcontainer.security_test.servlets:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.webcontainer.security_test.servlets:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.webcontainer.security_test.servlets:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.webcontainer.security_test.servlets:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.webcontainer.security_test.servlets:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.webcontainer.security_test.servlets:releaseNeeded"
+      }
+    }
+  ]
+}

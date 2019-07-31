@@ -1,0 +1,13 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "buildandrun",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.health_fat:buildandrun",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.health_fat:buildandrun"
+      }
+    }
+  ]
+}

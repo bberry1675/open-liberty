@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.concurrency.policy:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.concurrency.policy:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.concurrency.policy:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.concurrency.policy:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.concurrency.policy:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.concurrency.policy:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.concurrency.policy:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.concurrency.policy:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.concurrency.policy:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.concurrency.policy:releaseNeeded"
+      }
+    }
+  ]
+}

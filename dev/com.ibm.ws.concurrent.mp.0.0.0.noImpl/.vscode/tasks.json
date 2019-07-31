@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.concurrent.mp.0.0.0.noImpl:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.concurrent.mp.0.0.0.noImpl:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.concurrent.mp.0.0.0.noImpl:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.concurrent.mp.0.0.0.noImpl:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.concurrent.mp.0.0.0.noImpl:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.concurrent.mp.0.0.0.noImpl:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.concurrent.mp.0.0.0.noImpl:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.concurrent.mp.0.0.0.noImpl:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.concurrent.mp.0.0.0.noImpl:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.concurrent.mp.0.0.0.noImpl:releaseNeeded"
+      }
+    }
+  ]
+}

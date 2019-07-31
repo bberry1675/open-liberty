@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.wssecurity:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.wssecurity:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.wssecurity:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.wssecurity:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.wssecurity:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.wssecurity:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.wssecurity:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.wssecurity:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.wssecurity:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.wssecurity:releaseNeeded"
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.opentracing.cdi:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.opentracing.cdi:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.opentracing.cdi:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.opentracing.cdi:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.opentracing.cdi:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.opentracing.cdi:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.opentracing.cdi:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.opentracing.cdi:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.opentracing.cdi:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.opentracing.cdi:releaseNeeded"
+      }
+    }
+  ]
+}

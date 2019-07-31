@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.reactive.streams.operators:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.reactive.streams.operators:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.reactive.streams.operators:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.reactive.streams.operators:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.reactive.streams.operators:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.reactive.streams.operators:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.reactive.streams.operators:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.reactive.streams.operators:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.ws.microprofile.reactive.streams.operators:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.ws.microprofile.reactive.streams.operators:releaseNeeded"
+      }
+    }
+  ]
+}

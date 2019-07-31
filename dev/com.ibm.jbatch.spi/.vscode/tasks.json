@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compileJava",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.jbatch.spi:compileJava",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.jbatch.spi:compileJava"
+      }
+    },
+    {
+      "label": "assemble",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.jbatch.spi:assemble",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.jbatch.spi:assemble"
+      }
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.jbatch.spi:test",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.jbatch.spi:test"
+      }
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.jbatch.spi:build",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.jbatch.spi:build"
+      }
+    },
+    {
+      "label": "releaseNeeded",
+      "type": "shell",
+      "command": "../gradlew :com.ibm.jbatch.spi:releaseNeeded",
+      "windows": {
+        "command": "../gradlew.bat :com.ibm.jbatch.spi:releaseNeeded"
+      }
+    }
+  ]
+}
